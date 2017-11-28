@@ -51,13 +51,13 @@
             <c:set var="fileNum" value="${map.FILE_NUM}"></c:set>
             <c:set var="filename" value="${map.SYS_NM}"></c:set>
             <c:set var="origfilename" value="${map.ORG_NM}"></c:set>
-            <a href="/boardAction?cmd=download&fileNum=${fileNum}&filename=${filename}&origfilename=${origfilename}">${origfilename }</a>
+            <a href="/BoardAction?cmd=download&fileNum=${fileNum}&filename=${filename}&origfilename=${origfilename}">${origfilename }</a>
        	</c:forEach>
      </div>
     <div class="unrole">
-    	<a href="/boardAction?cmd=updateView&selectedPage=${selectedPage}&boardNum=${boardNum}" title="글수정" class="unrole_btn"><span>수정</span></a>
-    	<a href="/boardAction?cmd=delete&selectedPage=${selectedPage}&boardNum=${boardNum}" title="글삭제" class="unrole_btn"><span>삭제</span></a>
-    	<a href="/boardAction?cmd=list&selectedPage=${selectedPage}" title="글등록" class="unrole_btn"><span>목록</span></a>
+    	<a href="/BoardAction?cmd=updateView&selectedPage=${selectedPage}&boardNum=${boardNum}" title="글수정" class="unrole_btn"><span>수정</span></a>
+    	<a href="/BoardAction?cmd=delete&selectedPage=${selectedPage}&boardNum=${boardNum}" title="글삭제" class="unrole_btn"><span>삭제</span></a>
+    	<a href="/BoardAction?cmd=list&selectedPage=${selectedPage}" title="글등록" class="unrole_btn"><span>목록</span></a>
     </div>
   </div>
 </body>
