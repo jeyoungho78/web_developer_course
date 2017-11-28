@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var node = document.getElementsByTagName('h2');
+		for(var i = 0; i < node.length; i++){
+			alert((i+1) + "번째 값: " + node[i].childNodes[0].nodeValue);
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>하나</h2>
+	<h2>둘</h2>
+	<h2>셋</h2>
+	<div id="div2">
+		<input type="button" value="체크" onClick="Javascript:check()">
+	</div>
+</body>
+</html>

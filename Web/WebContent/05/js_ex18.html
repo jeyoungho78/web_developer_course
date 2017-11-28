@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function win_making(){
+		wo = window.open("http://www.naver.com", "_blank", "toolbar=yes, width=300, height=200");
+		if(wo != null){
+			wo.document.write("이 윈도우는 지금 새로 만든 윈도우입니다.");
+		}
+	}
+	
+	function win_close(){
+		if(wo != null) wo.close();
+	}
+
+</script>
+</head>
+<body>
+<form action="">
+	<input type="button" value="윈도우 생성" onClick="win_making()">
+	<input type="button" value="윈도우 닫기" onClick="win_close()">
+</form>
+</body>
+</html>

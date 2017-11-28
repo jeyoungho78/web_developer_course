@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var node = document.getElementById('p1');
+		node = node.firstChild;
+		alert("nodeName: " + node.nodeName + "\n" + "nodeType: " + node.nodeType + "\n" +
+				"nodeValue: " + node.nodeValue +"\n\n");
+		
+		node = node.nextSibling;
+		alert("nodeName: " + node.nodeName + "\n" + "nodeType: " + node.nodeType + "\n" +
+				"nodeValue: " + node.nodeValue +"\n\n");
+		
+		node = node.nextSibling;
+		alert("nodeName: " + node.nodeName + "\n" + "nodeType: " + node.nodeType + "\n" +
+				"nodeValue: " + node.nodeValue +"\n\n");
+		
+		node = node.parentNode;
+		alert("nodeName: " + node.nodeName + "\n" + "nodeType: " + node.nodeType + "\n" +
+				"nodeValue: " + node.nodeValue +"\n\n");
+		
+		node = node.lastChild;
+		alert("nodeName: " + node.nodeName + "\n" + "nodeType: " + node.nodeType + "\n" +
+				"nodeValue: " + node.nodeValue +"\n\n");
+
+	}
+	
+	window.onload = function(){ 
+		alert("onload");
+	} 
+
+</script>
+</head>
+<body>
+	<div id="div1">
+		<p id="p1" align="center">첫번째<a>DOM</a>예제 입니다.</p>
+	</div>
+	<div id="div2">
+		<input type="button" value="체크" onClick="Javascript:check()">
+	</div>
+</body>
+</html>

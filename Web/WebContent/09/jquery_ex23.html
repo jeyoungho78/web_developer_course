@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+	 <script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	 </script>
+	</head>
+	<body>
+
+		<div>
+    <label>
+      <input type="radio" name="1newsletterX" value="Hot Fuzz" />
+      <span>name?</span>
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="radio" name="2newsletterY" value="Cold Fusion" />
+      <span>value?</span>
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="radio" name="3newsletterZ" value="Evil Plans" />
+      <span>value?</span>
+    </label>
+  </div>
+
+		<script type="text/javascript">
+			//$('input[value="Hot Fuzz"]').next().text("Hot Fuzz");
+			//$("input[name^='2']").next().text("2");  // ^ : 문자가 ?? 으로 시작되는 것을 찾음
+			//$("input[name$='Z']").next().text("3");  // $ : 문자가 ?? 끝나는 것을 찾음
+			//$("input[name!='3newsletterZ']").next().text("not 3newsletterZ"); // ! : 문자가 ?? 와 같지 않은 것
+			$("input[name*='news']").next().text("new name exist!"); // * : 문자를 포함하는 것 찾음
+		</script>
+	</body>
+</html>

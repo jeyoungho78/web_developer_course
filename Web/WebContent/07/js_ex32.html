@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	function add(a, callback){
+		var result = a;
+		callback(result);
+	}
+	
+	add(10, function(x){
+		console.log('콜백 함수 호출');
+		console.log('콜백 결과 : ' + x);
+	});
+
+</script>
+</body>
+</html>

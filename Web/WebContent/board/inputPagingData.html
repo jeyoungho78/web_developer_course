@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert Paging Information</title>
+</head>
+
+<body>
+	<form action = "./pagingExec.jsp" method ="get">
+		<div align="center">
+		<table>
+			<tr>
+				<td>전체게시물 갯수</td>
+				<td>:</td>
+				<td><input type="text" name="totalContentCount"></td>
+			</tr>
+			<tr>
+				<td>페이지당게시물 갯수</td>
+				<td>:</td>
+				<td><input type="text" name="perPageContentCount"></td>
+			</tr>
+			<tr>
+				<td>페이지당보이는 페이지수</td>
+				<td>:</td>
+				<td><input type="text" name="perPageViewPageCount"></td>
+			</tr>
+			<tr>
+				<td>선택 페이지</td>
+				<td>:</td>
+				<td><input type="text" name="selectedPage"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="submit" value="보이기"></td>
+			</tr>
+		</table>
+		</div>
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function insertRow(){
+		var table = document.getElementById("myTable");
+		
+		var insertRowIndex = table.rows.length;
+		var row = table.insertRow(insertRowIndex);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = "NEW CELL1";
+		cell2.innerHTML = "NEW CELL2";
+		alert("td 갯수: " + row.cells.length);
+		alert(row.cells[0].innerHTML);
+		
+		row.setAttribute("onClick", "checkRow(this)");
+		
+		var btn1 = document.getElementById("btn1");
+		alert(btn1.getAttribute("value"));
+	}
+	
+	function checkRow(obj){
+		alert(obj.rowIndex);
+		var deleteRowIndex = obj.rowIndex;
+		document.getElementById("myTable").deleteRow(obj.rowIndex);
+	}
+	
+	function insertHead(){
+		var table = document.getElementById("myTable");
+		var header = table.createTHead();
+		var row = header.insertRow(0);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = "<b>첫번째셀</b>";
+		cell2.innerHTML = "<b>두번째셀</b>";
+	}
+</script>
+</head>
+<body>
+	<table id="myTable" border="1">
+		<tr>
+			<td>TD #0</td>
+			<td>TD #</td>
+		</tr>
+		<tr onClick="checkRow(this)">
+			<td>TD #2</td>
+			<td>TD #</td>
+		</tr>
+		<tr onClick="checkRow(this)">
+			<td>TD #</td>
+			<td>TD#5</td>
+		</tr>
+	</table>
+	<input type="button" value="헤드추가" onClick="Javascript:insertHead()">
+	<input type="button" id="btn1" value="추가" onClick="Javascript:insertRow()">
+
+</body>
+</html>

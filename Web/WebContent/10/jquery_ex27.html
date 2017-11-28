@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<style>
+  div { color:red; text-align:center; cursor:pointer;
+        font-weight:bolder; width:300px; }
+  </style>
+		 <script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<div>Zero <span></span></div>
+		<div>First <span></span></div>
+		<div>Second <span></span></div>
+
+		<p id="divtext"></p>
+
+	<script type="text/javascript">
+		$("div").attr("id", function(arr) {
+			return "div-id-order" + arr;
+		}).each(function() {
+			$("span", this).html("id값은 <b>" + this.id + "<b>");
+		});
+
+		$("#divtext").text($("div").attr("id"));
+	</script>
+	</body>
+</html>

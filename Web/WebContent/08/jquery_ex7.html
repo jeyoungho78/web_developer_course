@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+
+  body { font-size:14px; }
+  form { border:2px green solid; padding:2px; margin:0;
+         background:#efe; }
+  div { color:red; }
+  fieldset { margin:1px; padding:3px; }
+
+</style>
+<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<p>기능설명</p>
+	<p>
+			$("조상 자손")
+      지정된 조상의 자손 모든 요소를 선택합니다.
+	</p>
+  <form class="" action="index.html" method="post">
+    <div class="">
+      Form 영역은 초록색
+    </div>
+    <label for="">Child : </label>
+    <input type="text" name="name" value="">
+
+    <fieldset>
+      <label for="">Grandchild : </label>
+      <input type="text" name="newsletter" value="">
+    </fieldset>
+   </form>
+   form 외부 :  <input type="text" name="none" value="">
+   <script type="text/javascript">
+     $("form input").css("border", "2px dotted blue");
+   </script>
+</body>
+</html>

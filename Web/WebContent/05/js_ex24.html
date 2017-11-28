@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function answer(obj) {
+		var str = "";
+		if (obj.h1.checked) {
+			str = str + "독서하기를 선택했군요. \n";
+		}
+		if (obj.h2.checked) {
+			str = str + "낚시하기를 선택했군요. \n";
+		}
+		if (obj.h3.checked) {
+			str = str + "조깅하기를 선택했군요. \n";
+		}
+		if (obj.h4.checked) {
+			str = str + "등산하기를 선택했군요. \n";
+		}
+		alert(str);
+	}
+
+	function chkCheck(obj) {
+		/*
+		if (obj.h2[1].checked == true) {
+			f1.h2[1].checked = false;
+		} else {
+			f1.h2[1].checked = true;
+		}
+		*/
+		//alert(f1.h2.length)
+		
+		
+	}
+</script>
+</head>
+<body>
+	<form name="f1">
+		<input type="checkbox" name="h1" value="r" checked>독서하기<br>
+		<input type="checkbox" name="h2" value="f">낚시하기<br> 
+		<input type="checkbox" name="h2" value="f2">낚시하기2<br> 
+		<input type="checkbox" name="h3" value="h">조깅하기<br> 
+		<input type="checkbox" name="h4" value="c">등산하기
+		<p>
+		<input type="button" value="체크하기" onClick="chkCheck(this.form)">
+		<input type="button" value="전송" onClick="answer(this.form)">
+	</form>
+</body>
+</html>

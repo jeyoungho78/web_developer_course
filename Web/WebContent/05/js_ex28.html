@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function addOption(obj, vValue, tValue){ 
+	    obj.options[obj.options.length] = new Option(tValue.value, vValue.value);
+	} 
+	
+	function delOption(obj){
+		obj.options[obj.options.selectedIndex] = null;
+	}
+	
+	function selectChange(obj){
+		alert(obj.options[obj.options.selectedIndex].text);
+	}
+	
+</script>
+</head>
+<body>
+	<form name="form1">
+		<select name="country" onchange="selectChange(form1.country)">
+			<option value="korea">대한민국</option>
+			<option value="america">미국</option>
+			<option value="england" selected>영국</option>
+		</select>
+		value : <input type="text" name="vValue">
+		text : <input type="text" name="tValue">
+		<input type="button" name="btn" value="옵션추가" onClick="addOption(form1.country, form1.vValue, form1.tValue)">
+		<input type="button" name="btn1" value="옵션제거" onClick="delOption(form1.country)">
+	</form>
+</body>
+</html>

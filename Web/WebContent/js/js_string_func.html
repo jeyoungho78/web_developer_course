@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var topLevelValue = "1/대1^";
+	var middleLevelValue = "1/1/중1^1/2/중2^";
+	var bottomLevelValue = "1/1/소1^1/2/소2^";
+	
+	function addHiddenValue(){
+		var hTopLevel = document.getElementById("hTopLevel");
+		var hMiddleLevel = document.getElementById("hMiddleLevel");
+		var hBottomLevel = document.getElementById("hBottomLevel");
+		
+		hTopLevel.setAttribute("value", topLevelValue);
+		hMiddleLevel.setAttribute("value", middleLevelValue);
+		hBottomLevel.setAttribute("value", bottomLevelValue);
+		
+		var result = "";
+		result = hTopLevel.getAttribute("value");
+		result = hMiddleLevel.getAttribute("value");
+		result = hBottomLevel.getAttribute("value");
+	}
+	
+	
+	
+	// 중복값 확인  있으면 0, 없으면 -1 
+	var searchString = "2/대2^";
+	var result = topLevelValue.indexOf(searchString);
+	
+	//seperateString(middleLevelValue, '^');
+	
+	/* function seperateString(str, delimiter){
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		for(var i = 0; i < str.length; i++){
+			if(str.charAt(i) == delimiter){
+				next = str.indexOf(delimiter, pos);
+				segment = str.substring(pos, next);
+				pos = next + 1;
+				
+			}
+		}
+	} */
+	
+	/* var code = seperateString(middleLevelValue, '^', 0);
+	alert(code); */
+	//var LevelElement = seperateString(middleLevelValue, '^');
+	//alert(LevelElement);
+	
+	//var cnt = seperateStringCount(middleLevelValue, '^');
+	
+	function setLevel(){
+		var cnt = seperateStringCount(topLevelValue, '^');
+		for(var i = 0; i < cnt; i++){
+			var element = seperateString(topLevelValue, '^', i);
+			var superCode = seperateString(element, '/', 0);
+			var code = seperateString(element, '/', 1);
+			var name = seperateString(element, '/', 2);
+		}		
+	}
+	
+	function seperateString(str, delimiter, unitPostion){
+		var cnt = seperateStringCount(str, delimiter);
+		// 단위 개수 초과한 경우 
+		if(cnt < unitPostion){
+			return null
+		}
+		
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		var unitIdx = 0;
+		for(var i = 0; i < str.length; i++){
+			next = str.indexOf(delimiter, pos);
+			if(next > 0){
+				segment = str.substring(pos, next);
+				if(unitIdx == unitPostion){
+					return segment;
+				}
+				pos = next + 1;	
+				unitIdx++;
+			} else {
+				segment = str.substring(pos);
+				return segment;
+			}
+		}
+	}
+	
+	function seperateStringCount(str, delimiter){
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		var unitCnt = 0;
+		for(var i = 0; i < str.length; i++){
+			next = str.indexOf(delimiter, pos);
+			if(next > 0){
+				pos = next + 1;	
+				unitCnt++;
+			} else {
+				return unitCnt;
+			}
+		}
+	}
+	
+	 /* function seperateString(str, delimiter){
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		for(var i = 0; i < str.length; i++){
+			next = str.indexOf(delimiter, pos);
+			if(next < 0){
+				break;
+			} else {
+				segment = str.substring(pos, next);		
+				pos = next + 1;
+			}
+		}
+	}  */
+	
+	
+	//setOptions();
+	
+	function setOptions(){
+		var sTopLevel = document.getElementById("sTopLevel");
+		var sMiddleLevel = document.getElementById("sMiddleLevel");
+		
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		var segPos = 0;
+		var segNext = 0;
+		var superCode, code, text;
+		for(var i = 0; i < topLevelValue.length; i++){
+			if(topLevelValue.charAt(i) == '^'){
+				next = topLevelValue.indexOf('^', pos);
+				segment = topLevelValue.substring(pos, next);
+				pos = next + 1;
+				
+				for(var j = 0; j < segment.length; j++){
+					if(segment.charAt(j) == '/'){
+						segNext = segment.indexOf('/', segPos);
+						code = segment.substring(segPos, segNext);
+						text = segment.substring(segNext + 1);
+						
+						sTopLevel.options[sTopLevel.options.length] = new Option(text, code);
+					}
+				}
+			}
+		}
+		
+		pos = 0;
+		next = 0;
+		segment = "";
+		for(var i = 0; i < middleLevelValue.length; i++){
+			if(middleLevelValue.charAt(i) == '^'){
+				next = middleLevelValue.indexOf('^', pos);
+				segment = middleLevelValue.substring(pos, next);
+				pos = next + 1;
+				
+				segPos = 0;
+				segNext = 0;
+				superCode = "", code="", text="";
+				segmentIdx = 0;
+				for(var j = 0; j < segment.length; j++){
+					if(segment.charAt(j) == '/'){
+						segNext = segment.indexOf('/', segPos);
+						if(segmentIdx == 0){
+							superCode = segment.substring(segPos, segNext);
+						} else if(segmentIdx == 1) {
+							code = segment.substring(segPos, segNext);
+							text = segment.substring(segNext + 1);
+							
+							sMiddleLevel.options[sMiddleLevel.options.length] = new Option(text, code);
+						}
+						segPos = segNext + 1;
+						
+						segmentIdx++;
+					}
+				}
+			}
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<form>
+		<input type="hidden" name="hTopLevel"     id="hTopLevel" >
+		<input type="hidden" name="hMiddleLevel"  id="hMiddleLevel">
+		<input type="hidden" name="hBottomLevel"  id="hBottomLevel">
+		<select id="sTopLevel"></select>
+		<select id="sMiddleLevel"></select>
+		<select id="sBottomLevel"></select>
+	</form>
+	<div id="btnDiv">
+		<input type="button" name="btnSel" value="selectbox option 생성" onclick="setOptions()">
+		<input type="button" name="btnAddHidden" value="hidden 값 추가" onclick="addHiddenValue()">
+		<input type="button" name="btnSeperate" value="글자분리" onclick="seperateString()">
+		<input type="button" name="btnLevel" value="레벨셋팅" onclick="setLevel()">
+	</div>
+</body>
+</html>

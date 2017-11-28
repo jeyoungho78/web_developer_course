@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript">
+			var org_nm_num = 0;
+			function addFileInp() {
+				  var fileArea = $("#file_area");
+
+					var fileInput = $("<div></div>");
+					fileInput.attr("class", "file_wrap");
+					fileInput.attr("name", "fileInput");
+					fileArea.append(fileInput);
+
+					var fileInputCheckBox = $("<input></input>");
+					fileInputCheckBox.attr("type", "checkbox");
+					fileInputCheckBox.attr("name", "chkbox");
+					fileInput.append(fileInputCheckBox);
+
+					var fileInputBox = $("<input></input>");
+					fileInputBox.attr("type", "file");
+					org_nm_num += 1;
+					fileInputBox.attr("name", "org_nm" + org_nm_num);
+					fileInput.append(fileInputBox);
+			}
+
+			function deleteInp() {
+				var fileArea = $("#file_area");
+				var fileInput = $("[name='fileInput']");
+				var fileInputCheckBox = $("[name='chkbox']");
+
+				var chkCnt = 0;
+				for (var i = 0; i < fileInputCheckBox.length; i++) {
+					if (fileInputCheckBox[i].checked) {
+						fileInput.eq(i).remove();
+						chkCnt++;
+					}
+				}
+
+				if (chkCnt == 0) {
+					alert("삭제할 데이터가 없습니다.");
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+   <a href="#"><span style="background-color:#666; color:#fff;padding:2px 4px; font-size:9px; border-radius: 2px; font-weight:bold;">X</span></a>
+<a href="#"><span style="background-color:#666; color:#fff;padding:3px 5px; font-size:9px; border-radius: 3px; font-family:Arial,sans-serif;">X</span></a>
+	 <input type="button" name="" value="Element 생성" onclick="addFileInp()">
+	 <input type="button" name="" value="Element 삭제" onclick="deleteInp()">
+	 <div id="file_area">
+
+	 </div>
+	</body>
+</html>

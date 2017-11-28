@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	var Person = [{name:'홍길동', age:10}, {name:'이순신', age:20}, {name:'강감찬', age:30}];
+
+	console.log('배열 사이즈 : ' + Person.length);
+	for(var i = 0; i < Person.length; i++){
+		console.log('배열[' + i + ']' + Person[i].name);
+	}
+	
+	console.log('\nforEach 구문사용하기');
+	Person.forEach(function(item, index) {
+		console.log('배열[' + index + ']' + item.name);
+	});
+	
+	Person.push({name:'김구', age:40});
+	
+	var add = function(){
+		return '신규로 추가되었음';
+	};
+	
+	Person.push(add);
+	
+	console.log('배열 사이즈' + Person.length);
+	console.log('추가된 함수 실행 : ' + Person[Person.length-1]());
+	
+	Person.pop();                   // 사이즈 줄이고 내용 지움
+	console.log('배열 사이즈' + Person.length);
+	delete Person[Person.length-1]; // 내용만 지움
+	
+	console.log('배열 사이즈' + Person.length);
+	
+	for(var i = 0; i < Person.length-1; i++){
+		console.log('배열[' + i + ']' + Person[i].name);
+	}
+	
+	
+</script>
+<body>
+
+</body>
+</html>

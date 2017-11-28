@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chkButton1(){
+		//alert(1);
+		//alert(form1.fName.value);
+		//alert(form1.elements[0].value);
+		//alert(form1.elements.length);
+		//alert(document.forms[0].fName.value);
+		//alert(form1.fHidden.value);
+		alert(form1.elements[1].value);
+	}
+	
+	function chkButton2(){
+		//alert(document.forms[1].fName.value);
+		alert(document.forms[1].fHidden.value);
+	}
+	
+	function chkButton(obj){
+		//alert(obj.fName.value);
+		//alert(obj.name);
+		alert(obj.value);
+	}
+	
+	function txtConfirm(obj){
+		alert(obj.value); // alert(form1.fName.value); 와 같은 의미
+	}
+	
+	function txtClear(obj){
+		obj.value="";
+	}
+	
+	function txtBlur(){
+		//form1.fName.blur();
+		//form1.fName.select();
+		form1.fName.focus();
+	}
+	
+	function txtChange(){
+		alert(form1.fName.value);
+	}
+	
+	function chkFocus(){
+		alert(1);
+		form1.fButton.click();
+		form1.fButton.blur();
+	}
+	
+	function chkClick(){
+		alert(3);
+	}
+	
+</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="text" name="fName">
+		<input type="hidden" name="fHidden" value="form1의 hidden값입니다.">
+		<input type="button" name="fButton" value="form1버튼확인" onmouseup="chkClick()">
+	</form>
+	<!--<form name="form1">
+		<input type="text" name="fName" onBlur="txtClear(this)">
+		<input type="hidden" name="fHidden" value="form1의 hidden값입니다.">
+		<input type="button" name="fButton" value="form1버튼확인" onClick="chkButton(this)">
+	</form>
+	 <p>
+	<form name="form2">
+		<input type="text" name="fName">
+		<input type="hidden" name="fHidden" value="form2의 hidden값입니다.">
+		<input type="button" name="fButton" value="form2버튼확인" onClick="chkButton(this)">
+	</form> -->
+</body>
+</html>

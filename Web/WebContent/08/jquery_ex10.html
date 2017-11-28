@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+  div,span {
+    display:block;
+    width:80px;
+    height:80px;
+    margin:5px;
+    background:#bbffaa;
+    float:left;
+    font-size:14px;
+  }
+  div#small {
+    width:60px;
+    height:25px;
+    font-size:12px;
+    background:#fab;
+  }
+</style>
+<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+  <div class="">
+    #pre 이전에 존재
+  </div>
+  <span id="prev">span#prev</span>
+  <div class="">
+    div 형제
+  </div>
+
+  <div class="">
+    div 형제
+    <div class="" id="small">
+      div 형제의 자식
+    </div>
+  </div>
+
+  <span>span 태크 형제</span>
+  <div class="">
+    div 형제
+  </div>
+
+   <script type="text/javascript">
+      $("#prev ~ div").css("border", "3px groove blue");
+   </script>
+</body>
+</html>

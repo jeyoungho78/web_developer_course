@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	var num1 = 100;
+	var num2 = 200;
+	var str1 = "자바스크립트";
+	var str2 = "javascript";
+	
+	document.write("num1의 자료형 : " + typeof num1 + "<br>");
+	document.write("str1의 자료형 : " + typeof str1 + "<p>");
+	
+	var rel1 = (typeof(num2) == "number") ? "number" : "not_number";
+	var rel2 = (typeof(str2) != "string") ? "not_string" : "string";
+	
+	document.write("num2의 자료형 : " + rel1 + "<br>");
+	document.write("str2의 자료형 : " + rel2 + "<br>");
+	
+</script>
+</body>
+</html>

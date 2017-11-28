@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	var Person = {};
+	
+	Person['age'] = 30;
+	Person['name'] = '홍길동';
+	Person.address = '서울시 종로구';
+	Person.afterAge = function(a){
+		return "10년후의 나이:" + (a+10);
+	}
+	
+	console.log('나이 :' + Person.age);
+	console.log('이름 :' + Person.name);
+	console.log('주소 :' + Person['address']);
+	console.log('나이확인:' + Person.afterAge(Person.age));
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<style>
+  span { color:#008; }
+  span.sogreen { color:green; font-weight: bolder; }
+  </style>
+
+	 <script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	 </script>
+	</head>
+	<body>
+
+		<div> id attribute 없음</div>
+	  <div id="첫번째 id">id attribute 존재</div>
+
+	  <div id="두번째 id">id attribute 존재</div>
+	  <div>id attribute 없음</div>
+
+		<script type="text/javascript">
+			$('div[id]').one('click', function(){
+				var idString = $(this).text() + '=' + $(this).attr('id');
+				$(this).text(idString);
+			});
+		</script>
+	</body>
+</html>

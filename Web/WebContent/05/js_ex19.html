@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var id;
+	
+	function start_time(){
+		var today = new Date();
+		var timesec = today.getSeconds();
+		document.form1.seconds.value = timesec;
+		id = setTimeout(start_time, 2000);
+	}
+	
+	function stop_time(){
+		clearTimeout(id);
+	}
+
+</script>
+</head>
+<body>
+	<form name="form1">
+	<input type="text" name="seconds" size=20>
+	<p>
+	<input type="button" value="start" onClick="start_time()">
+	<p>
+	<input type="button" value="stop" onClick="stop_time()">
+	</form>
+</body>
+</html>

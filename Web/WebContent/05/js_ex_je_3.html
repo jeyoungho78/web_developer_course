@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chkRadio(obj){
+		var chkCnt = obj.length;
+		var chk = 0;
+		for(var i = 0; i < chkCnt; i++){
+			if(obj[i].checked == false){
+				chk++;
+			}
+		}
+		
+		if(chk == chkCnt){
+			alert("라디오버튼을 체크해주세요.");
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="radio" name="g1" value="m1">라디오버튼1
+		<input type="radio" name="g1" value="m2">라디오버튼2
+		<input type="radio" name="g1" value="m3">라디오버튼3
+		<input type="button" value="체크확인실행" onClick="chkRadio(this.form.g1)">
+	</form>
+</body>
+</html>

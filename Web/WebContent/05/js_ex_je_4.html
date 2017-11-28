@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+    /*function checkPassword(obj){
+    	var arrNum = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	var arrNumLen = arrNum.length;
+    	var isNum = false;
+    	
+    	for(var i = 0; i < arrNumLen; i++){
+    		if((obj.indexOf(arrNum[i])) != -1){
+    			isNum = true;
+    			break;
+    		}
+    	}
+    	
+    	var arrLowerChar ="abcdefghijklmnopqrstuvwxyz";
+    	var arrLowerCharLen = arrLowerChar.length;
+    	var isLowerChar = false;
+    	for(var i = 0; i < arrLowerCharLen; i++){
+    		if((obj.indexOf(arrLowerChar[i])) != -1){
+    			isLowerChar = true;
+    			break;
+    		}
+    	}
+    	
+    	return (isNum && isLowerChar);
+    }
+    
+ 	function checkEmail(obj){
+    	return true;
+    }
+ 	*/
+ 	
+	function confirmPersonalInfo(obj){
+		 if(obj.txtName.value == ""){
+			alert("이름을 입력해주세요");
+			return;
+		}
+		
+		//var chk = checkPassword(obj.txtPassword.value);
+		 
+		var pattern = /(?=.*\d)(?=.*[a-z])/;
+		if(!pattern.test(obj.txtPassword.value)){
+			alert("패스워드는 소문자,숫자를 포함해야 됩니다.");
+			return;
+		}
+		
+		pattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
+		if(!pattern.test(obj.txtEmail.value)){
+			alert("정상적인 이메일 정보를 입력해주세요.");
+			return;
+		}
+		
+		var chkCnt = 0;
+		for(var i = 0; i < obj.chkHobby.length; i++){
+			if(obj.chkHobby[i].checked == true){
+				chkCnt++;
+			}
+		}
+		if(chkCnt < 2){
+			alert("취미를 2개이상 입력해주세요.");
+			return;
+		}
+		
+		var selIdx = obj.selInterestedFields.options.selectedIndex;
+		if(obj.selInterestedFields.options[selIdx].text == "없음"){
+			alert("관심 분야를 선택해주세요.");
+			return;
+		}
+	}
+
+
+</script>
+<body>
+	<form name="frmPersonalInfo">
+		이름 : <input type="text" name="txtName"> 
+		비밀번호 : <input type="password" name="txtPassword">
+		<p>
+		이메일 : <input type="text" name="txtEmail"> 
+		<p>
+		지역 : <input type="radio" name="rdRegion" value="seoul">서울
+		     <input type="radio" name="rdRegion" value="gyeonggi">경기
+		     <input type="radio" name="rdRegion" value="pusan">부산
+		     <p>
+		     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		     <input type="radio" name="rdRegion" value="gwangju">광주
+		     <input type="radio" name="rdRegion" value="incheon">인천
+		     <input type="radio" name="rdRegion" value="daegu">대구
+		<P>
+		취미 : <input type="checkbox" name="chkHobby" value="reading">독서
+		     <input type="checkbox" name="chkHobby" value="baseball">야구
+		     <input type="checkbox" name="chkHobby" value="soccer">축구
+		     <p>
+		     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		     <input type="checkbox" name="chkHobby" value="board">보드
+		     <input type="checkbox" name="chkHobby" value="volleyball">배구
+		<p>
+		관심분야 : <select name="selInterestedFields">
+					<option value="none">없음</option>
+					<option value="job">직업</option>
+					<option value="hobby">취미</option>
+					<option value="finance">금융</option>
+				</select>
+		<p>
+		<input type="button" name="btnConfirm" value="등록" onClick="confirmPersonalInfo(frmPersonalInfo)">
+	</form>
+</body>
+</html>

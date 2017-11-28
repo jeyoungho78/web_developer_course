@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	var levelDepth = 3;
+
+	function add(){
+		var levelRecordsArea = document.getElementById("levelRecordsArea");
+		
+		var levelRecord = document.createElement("p");
+		levelRecord.setAttribute("name", "levelRecord");
+		levelRecordsArea.appendChild(levelRecord);
+		
+		var levelRecordCheckBox = document.createElement("input");
+		levelRecordCheckBox.setAttribute("type", "checkbox");
+		levelRecordCheckBox.setAttribute("name", "levelRecordCheckBox");
+		levelRecord.appendChild(levelRecordCheckBox);
+		
+		for(var i = 0; i < levelDepth; i++){
+			var levelRecordCodeText = document.createElement("input");
+			levelRecordCodeText.setAttribute("type", "text");
+			levelRecordCodeText.setAttribute("name", "levelRecordCodeText");
+			levelRecord.appendChild(levelRecordCodeText);
+			
+			var levelRecordNameText = document.createElement("input");
+			levelRecordNameText.setAttribute("type", "text");
+			levelRecordNameText.setAttribute("name", "levelRecordNameText");
+			levelRecord.appendChild(levelRecordNameText);
+		}
+	}
+	
+	function remove(){
+		var levelRecordsArea = document.getElementById("levelRecordsArea");
+		var levelRecords = document.getElementsByName("levelRecord");
+		var leve1RecordCheckBoxs = document.getElementsByName("levelRecordCheckBox");
+		
+		for(var i = 0; i < leve1RecordCheckBoxs.length; i++){
+			if(leve1RecordCheckBoxs[i].checked){
+				levelRecordsArea.removeChild(levelRecords[i]);
+				i--;
+			}
+		}
+	}
+	
+	function addOptions(){
+		var levelRecordsArea = document.getElementById("levelRecordsArea");
+		var levelRecords = document.getElementsByName("levelRecord");
+		var leve1RecordCheckBoxs = document.getElementsByName("levelRecordCheckBox");
+		var levelRecordCodeTexts = document.getElementsByName("levelRecordCodeText");
+		var levelRecordNameTexts = document.getElementsByName("levelRecordNameText");
+		
+		var hidLevelValue = ["", "", ""];
+		
+		for(var i = 0; i < leve1RecordCheckBoxs.length; i++){
+			if(leve1RecordCheckBoxs[i].checked){
+				var offset = i * levelDepth; // 레벨 레코드별 첫 텍스트 박스의 인덱스 값
+				var index = -1; 
+				var objSel = null;
+				var objCode = ["", "", ""];
+				var objName = ["", "", ""];
+				var hidValue = "";
+				
+				// 레벨 select에 추가
+				for(var level = 0; level < levelDepth; level++){
+					index = offset + level;
+					objCode[level] = levelRecordCodeTexts[index].value;
+					objName[level] = levelRecordNameTexts[index].value;
+					hidValue = "";
+					switch(level){
+					case 0: 
+						objSel = selLevel0;
+						hidValue = objCode[level] + "/" + objName[level] + "^";
+						hidLevelValue[level] += hidValue;
+						break;
+					case 1:
+						objSel = selLevel1;
+						hidValue = objCode[level-1] + "/" + objCode[level] + "/" + objName[level] + "^";
+						hidLevelValue[level] += hidValue;
+						break;
+					case 2: 
+						objSel = selLevel2;
+						hidValue = objCode[level-1] + "/" + objCode[level] + "/" + objName[level] + "^";
+						hidLevelValue[level] += hidValue;
+						break;
+					}
+					addOption(objSel, objCode[level], objName[level]);
+				}
+			}
+		}//for
+		
+		// hidden값 셋팅 
+		setHiddenValue(hidLevelValue);
+	}
+	
+	function setHiddenValue(objArrValue){
+		var hiddenDataArea = document.getElementById("hiddenDataArea");
+		var hiLevels = document.getElementsByName("hidLevel");
+		
+		for(var level = 0; level < hiLevels.length; level++){
+			hiLevels[level].setAttribute("value", objArrValue[level]);
+		}
+	}
+	
+	function addOption(objSel, objCode, objName){
+		if(!checkDuplication(objSel, objCode)){
+			objSel.options[objSel.options.length] = new Option(objName, objCode);
+		}
+	}
+	
+	function checkDuplication(objSel, objCode){
+		for(var i = 0; i < objSel.options.length; i++){
+			if(objSel.options[i].value == objCode){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function viewHiddenValue(){
+		alert(hidLevel0.value);
+		alert(hidLevel1.value);
+		alert(hidLevel2.value);
+	}
+	
+	function clearOptions(objSel){
+		objSel.innerHTML = ''; 
+		objSel.options[0] = new Option("선택", "-1");
+	}
+	
+	function seperateString(str, delimiter, unitPostion){
+		var cnt = seperateStringCount(str, delimiter);
+		// 단위 개수 초과한 경우 
+		if(cnt < unitPostion){
+			return null
+		}
+		
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		var unitIdx = 0;
+		for(var i = 0; i < str.length; i++){
+			next = str.indexOf(delimiter, pos);
+			if(next > 0){
+				segment = str.substring(pos, next);
+				if(unitIdx == unitPostion){
+					return segment;
+				}
+				pos = next + 1;	
+				unitIdx++;
+			} else {
+				segment = str.substring(pos);
+				return segment;
+			}
+		}
+	}
+	
+	function seperateStringCount(str, delimiter){
+		var pos = 0;
+		var next = 0;
+		var segment = "";
+		var unitCnt = 0;
+		for(var i = 0; i < str.length; i++){
+			next = str.indexOf(delimiter, pos);
+			if(next > 0){
+				pos = next + 1;	
+				unitCnt++;
+			} else {
+				return unitCnt;
+			}
+		}
+	}
+	
+	function selectLevelName(level){
+		switch(level){
+		case 0:
+			clearOptions(selLevel1);
+			clearOptions(selLevel2);
+			
+			var hidLevel0Value =  hidLevel0.getAttribute("value");
+			var hidLevel1Value =  hidLevel1.getAttribute("value");
+			
+			var superCnt = seperateStringCount(hidLevel0Value, '^');
+			for(var i = 0; i < superCnt; i++){
+				var element = seperateString(hidLevel0Value, '^', i);
+				var code = seperateString(element, '/', 0);
+				var name = seperateString(element, '/', 1);
+				
+				
+			}	
+			
+			break;
+		case 1:
+			clearOptions(selLevel2);
+			break;
+		}
+	}
+
+</script>
+<body>
+	<div id="functionArea">
+	   <input type="button" id="add" value="추가" onClick="add()">
+	   <input type="button" id="remove" value="제거" onClick="remove()">
+	   <input type="button" id="addOption" value="분류생성" onClick="addOptions()">
+	   <input type="button" id="viewHiddenValue" value="분류값확인" onClick="viewHiddenValue()">
+	   <select id="selLevel0" onChange="selectLevelName(0)">
+	   		<option value="-1">선택</option>
+	   </select>
+	   <select id="selLevel1" onChange="">
+	   		<option value="-1">선택</option>
+	   </select>
+	   <select id="selLevel2">
+	   		<option value="-1">선택</option>
+	   </select>
+	</div>
+	<div id="hiddenDataArea">
+		<input type="hidden" id="hidLevel0" name="hidLevel">
+		<input type="hidden" id="hidLevel1" name="hidLevel">
+		<input type="hidden" id="hidLevel2" name="hidLevel">
+	</div>
+	<div id="levelRecordsArea">
+		<!-- <p id="optionHead">option area</p> -->
+	<p name="levelRecord">
+		<input name="levelRecordCheckBox" type="checkbox" checked>
+		<input name="levelRecordCodeText" type="text" value="1">
+		<input name="levelRecordNameText" type="text" value="한국">
+		<input name="levelRecordCodeText" type="text" value="1">
+		<input name="levelRecordNameText" type="text" value="서울">
+		<input name="levelRecordCodeText" type="text" value="1">
+		<input name="levelRecordNameText" type="text" value="서초">
+	</p>
+	<p name="levelRecord">
+		<input name="levelRecordCheckBox" type="checkbox" checked>
+		<input name="levelRecordCodeText" type="text" value="1">
+		<input name="levelRecordNameText" type="text" value="한국">
+		<input name="levelRecordCodeText" type="text" value="2">
+		<input name="levelRecordNameText" type="text" value="부산">
+		<input name="levelRecordCodeText" type="text" value="2">
+		<input name="levelRecordNameText" type="text" value="동래">
+	</p>
+	<p name="levelRecord">
+		<input name="levelRecordCheckBox" type="checkbox" checked>
+		<input name="levelRecordCodeText" type="text" value="2">
+		<input name="levelRecordNameText" type="text" value="미국">
+		<input name="levelRecordCodeText" type="text" value="3">
+		<input name="levelRecordNameText" type="text" value="뉴욕">
+		<input name="levelRecordCodeText" type="text" value="3">
+		<input name="levelRecordNameText" type="text" value="스트리트">
+	</p>
+	</div>
+</body>
+</html>

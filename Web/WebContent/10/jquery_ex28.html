@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<button>Enable</button>
+		<input type="text" title="current" />
+		<div id="log"></div>
+	<script type="text/javascript">
+		(function () {
+			var inputTitle = $("input").attr("title");
+			$("button").click(function () {
+				var input = $(this).next();
+				if(input.attr("title") == inputTitle){
+					input.removeAttr("title")
+				} else {
+					input.attr("title", inputTitle);
+				}
+
+				$("#log").html("현재 title attribute 값은 " + input.attr("title") + " 입니다.");
+			});
+		})();
+	</script>
+	</body>
+</html>

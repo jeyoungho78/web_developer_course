@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="department">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="hashmap" type="java.util.HashMap" />
+	<typeAlias alias="sampleEntity" type="com.entity.sample.SampleEntity"/>	
+
+	<resultMap class="com.entity.sample.SampleEntity" id="departmentEntityResultMap">
+		<result property="deptCode" column="deptCode"/> 
+		<result property="deptName" column="deptName" />  
+	</resultMap>
+
+	<select id="getDepartmentList" parameterClass="hashmap" resultMap="departmentEntityResultMap">
+		SELECT 
+			dept_code as deptCode,
+			dept_name as deptName
+   		  FROM DEPARTMENT
+	   	<dynamic prepend="WHERE">
+	   		<isNotEmpty property="deptCode">
+	   			<isGreaterThan property="deptCode" compareValue="30">
+	   				dept_code = #deptCode#
+	   			</isGreaterThan>
+	   		</isNotEmpty>
+	   	</dynamic>	  
+	   		  
+		<!-- <dynamic prepend="WHERE">
+			<isNotEmpty property="deptCode" prepend="AND">
+				dept_code = #deptCode#
+			</isNotEmpty>
+			<isNotEmpty property="deptName" prepend="AND">
+				dept_name LIKE '%'|| #deptName# || '%'
+			</isNotEmpty>
+			<isLessThan property="deptCode" compareValue="30" prepend="AND">
+				dept_code <![CDATA[<=]]> 30
+			</isLessThan>
+			<isGreaterThan></isGreaterThan>
+			<isGreaterEqual></isGreaterEqual>
+		</dynamic> -->
+		ORDER BY DEPT_CODE
+	</select>
+	<statement id="sampleInsertEnd" parameterClass="hashmap" resultClass="int">
+		INSERT INTO DEPARTMENT 
+			(DEPT_CODE, DEPT_NAME, DEPT_ENAME, CREATE_DATE)
+		VALUES(#deptCode#, #deptName#, #deptEname#, SYSDATE)
+	</statement>
+	<!-- <insert> or <update> 를 해도 상관은 없다. -->
+</sqlMap>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <title>table sample</title>
+</head>
+<body>
+<div class="wrap">
+    <h2>게시판</h2>
+    <fieldset>
+        <div class="search_form">
+            <legend class="a11y_hidden">게시판 목록 검색</legend>
+            <select name="field" title="분류선택">
+                <option value="">제목</option>
+                <option value="">작성자</option>
+                <option value="">내용</option>
+            </select>
+            <input id="search_word" name="search_word" class="inp_type" title="검색어 입력" value="" type="text">
+            <a href="#" class="inp_btn"><span>검색하기</span></a>
+        </div>
+    </fieldset>
+    <table>
+        <caption class="a11y_hidden">게시판으로 번호 제목 작성자 작성일 조회수를 나타내는 표</caption>
+        <colgroup>
+                <col style="width:10%">
+                <col>
+                <col style="width:15%">
+                <col style="width:12%">
+                <col style="width:9%">
+                <col style="width:9%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">글쓴이</th>
+                <th scope="col">작성일</th>
+                <th scope="col">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <th scope="row">
+                    <a href="#">게시판 test 제목입니다.</a>
+                </th>
+                <td>홍길동</td>
+                <td>2016-09-08</td>
+                <td>123</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="unrole">
+        <a href="/" title="글등록" class="unrole_btn"><span>등록</span></a>
+    </div>
+    <div class="ui_page_navigator" role="navigation" aria-label="페이지 선택">
+        <a id="ui_pgn_prev" title="이전페이지" href="/" class="pgn_btn"><span class="a11y_hidden">이전페이지</span></a>
+        <a href="" id="pgn_a_1" class="ui_pgn_active">
+            <span class="a11y_hidden">현재페이지</span>
+            <span>1</span>
+        </a>
+        <a href="" id="pgn_a_2"><span>2</span></a>
+        <a href="" id="pgn_a_3"><span>3</span></a>
+        <a href="" id="pgn_a_4"><span>4</span></a>
+        <a href="" id="pgn_a_5"><span>5</span></a>
+        <a href="" id="pgn_a_6"><span>6</span></a>
+        <a href="" id="pgn_a_7"><span>7</span></a>
+        <a href="" id="pgn_a_8"><span>8</span></a>
+        <a href="" id="pgn_a_9"><span>9</span></a>
+        <a href="" id="pgn_a_10"><span>10</span></a>
+        <a href="/" title="다음페이지" id="ui_pgn_next" class="pgn_btn"><span class="a11y_hidden">다음페이지</span></a>
+    </div>
+</div>
+</body>
+</html>

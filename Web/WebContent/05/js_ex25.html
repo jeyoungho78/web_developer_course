@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chkSelection(obj){ // 선택된 값을 확인하는 함수
+		/* var selectCnt = obj.options.length;
+		alert("선택가능한 국가 수 : " + obj.options.length);
+		
+		for(var i = 0; i < selectCnt; i++){
+			if(obj.options[i].selected == true){
+				//alert("선택하신국가는 : " + obj.options[i].value);
+				alert("선택하신국가는 : " + obj.options[i].text);
+			}
+		} */
+		
+		//alert(obj.options.selectedIndex);
+		//alert(obj.options[obj.options.selectedIndex].text);
+		obj.selected = true;
+	    
+	} 
+</script>
+</head>
+<body>
+	<form name="form1">
+		<select name="country">
+			<option value="korea">대한민국</option>
+			<option value="america">미국</option>
+			<option value="england" selected>영국</option>
+		</select>
+		<input type="button" name="btn" value="확인" onClick="chkSelection(form1.country)">
+		<input type="button" name="btn2" value="대한민국선택" onClick="chkSelection(form1.country.options[0])">
+		<input type="button" name="btn3" value="미국선택" onClick="chkSelection(form1.country.options[1])">
+		<input type="button" name="btn4" value="영국선택" onClick="chkSelection(form1.country.options[2])">
+	</form>
+</body>
+</html>

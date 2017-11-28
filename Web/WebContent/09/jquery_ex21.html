@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<style>
+  span { color:#008; }
+  span.sogreen { color:green; font-weight: bolder; }
+  </style>
+
+	 <script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	 </script>
+	</head>
+	<body>
+
+		<div>
+		    <span>John,</span>
+		    <span>Karl,</span>
+		    <span>Brandon</span>
+
+		  </div>
+		  <div>
+		    <span>Glen,</span>
+		    <span>Tane,</span>
+		    <span>Ralph</span>
+
+		  </div>
+			<div>
+		    <span>Hong,</span>
+		  </div>
+
+		<script type="text/javascript">
+			//$("div span:last-child").css("text-decoration", "underline");
+			$("div span:only-child").css("text-decoration", "underline");
+		</script>
+	</body>
+</html>

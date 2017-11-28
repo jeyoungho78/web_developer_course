@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	document.write("history 목록수 : " + history.length);
+</script>
+</head>
+<body>
+	<form>
+		<input type="button" value="Reload" onClick="history.go(0)">
+		<input type="button" value="1단계 뒤로" onClick="history.go(-1)">
+		<input type="button" value="1단계 앞으로" onClick="history.go(1)">
+		<input type="button" value="1단계 뒤로(back)" onClick="history.back()">
+	</form>
+</body>
+</html>

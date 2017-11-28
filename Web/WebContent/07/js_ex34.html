@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+	var employee = '{"department":[' + 
+		'{"firstName":"김", "secondName":"구"},' +
+		'{"firstName":"박", "secondName":"아라"},' + 
+		'{"firstName":"정", "secondName":"지우"}]}';
+	
+	var jsonObj = JSON.parse(employee);
+	console.log(jsonObj.department.length);
+	
+	for(var i = 0; i < jsonObj.department.length; i++){
+		console.log(jsonObj.department[i].firstName, ":", jsonObj.department[i].secondName);
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

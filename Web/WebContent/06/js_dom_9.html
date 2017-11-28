@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function makeSelect(){
+		var pos = document.getElementById("div1");
+		var newSelect = document.createElement("select");
+		var newOption = document.createElement("option");
+		newOption.text = "대한민국";
+		newOption.value = "korea";
+		
+		newSelect.add(newOption);
+		pos.appendChild(newSelect);
+	}
+</script>
+</head>
+<body>
+	<div id="div1">
+		<p id="p1">selectbox 추가.</p>
+	</div>
+	<div id="div2">
+		<input type="button" value="생성" onClick="Javascript:makeSelect()">
+	</div>
+</body>
+</html>

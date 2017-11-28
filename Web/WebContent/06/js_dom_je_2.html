@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	const classTextBoxGroupCnt = 3; // 2개 텍스트 박스로 1개 분류 그룹 생성. 총 3개 그룹이 생성됨
+	var classContentArray = [];            // 
+	
+	function add(){
+		var classContentArea = document.getElementById("classContentArea");
+
+		var contentPTag = document.createElement("p");
+		contentPTag.setAttribute("name", "classContent");
+		classContentArea.appendChild(contentPTag);
+		
+		var inputCheck = document.createElement("input");
+		inputCheck.setAttribute("type", "checkbox");
+		inputCheck.setAttribute("name", "classCheck");
+		contentPTag.appendChild(inputCheck);
+		
+		for(var i = 0; i < classTextBoxGroupCnt; i++){
+			var inputValue = document.createElement("input");
+			inputValue.setAttribute("type", "text");
+			inputValue.setAttribute("name", "classCode");
+			var inputText = document.createElement("input");
+			inputText.setAttribute("type", "text");
+			inputText.setAttribute("name", "className");
+			contentPTag.appendChild(inputValue);
+			contentPTag.appendChild(inputText);
+		}
+	}
+	
+	function remove(){
+		var classContentArea = document.getElementById("classContentArea");
+		var classContents = document.getElementsByName("classContent");
+		var classChecks = document.getElementsByName("classCheck");
+		
+		for(var i = 0; i < classContents.length; i++){
+			if(classChecks[i].checked == true){
+				classContentArea.removeChild(classContents[i]);
+				i--;
+			}
+		}
+	}
+	
+	function addOption(){
+		var classContents = document.getElementsByName("classContent");
+		var classChecks = document.getElementsByName("classCheck");
+		var classCodes = document.getElementsByName("classCode");
+		var classNames = document.getElementsByName("className");
+		
+		var classContentIndex = 0;
+		for(var i = 0; i < classContents.length; i++){
+			if(classChecks[i].checked == true){
+				var pos = i * classTextBoxGroupCnt;
+				
+				if(checkDuplication(sel_category, classCodes[pos].value)
+				   	&& checkDuplication(sel_division, classCodes[pos + 1].value)
+				   	&& checkDuplication(sel_section, classCodes[pos + 2].value)){
+						alert("대분류, 중분류, 소분류 데이터가 중복되었습니다.");
+						return;
+				}
+				
+				if(!checkDuplication(sel_category, classCodes[pos].value)){
+					sel_category.options[sel_category.options.length] = new Option(classNames[pos].value, classCodes[pos].value);
+				} 				
+				if(!checkDuplication(sel_division, classCodes[pos + 1].value)){
+					sel_division.options[sel_division.options.length] = new Option(classNames[pos + 1].value, classCodes[pos + 1].value);
+				}				
+				if(!checkDuplication(sel_section, classCodes[pos + 2].value)){
+					sel_section.options[sel_section.options.length] = new Option(classNames[pos + 2].value, classCodes[pos + 2].value);
+				} 
+				
+				var classContent ={
+						categoryCode : classCodes[pos].value ,
+						categoryName : classNames[pos].value ,
+						divisionCode : classCodes[pos + 1].value ,
+						divisionName : classNames[pos + 1].value ,
+						sectionCode : classCodes[pos + 2].value,
+						sectionName : classNames[pos + 2].value
+				}
+				
+				classContentArray[classContentIndex++] = classContent;
+			}
+		}
+	}
+	
+	// select의 value값 중복 체크 함수
+	function checkDuplication(objSel, objCode){
+		var len = objSel.options.length;
+		for(var i = 0; i < len; i++){
+			if(objSel.options[i].value == objCode){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function selectCategory(obj, objSub){
+		clearOptions(objSub);
+		
+		var code = obj.options[obj.options.selectedIndex].value;
+		var objSubOptionIndex = 1;
+		for(var i = 0; i < classContentArray.length; i++){
+			if(classContentArray[i].categoryCode == code){
+				objSub.options[objSubOptionIndex++] = new Option(classContentArray[i].divisionName, classContentArray[i].divisionCode);
+			}
+		}
+	}
+	
+	function selectDivision(obj, objSub){
+		clearOptions(objSub);
+		
+		var code = obj.options[obj.options.selectedIndex].value;
+		var objSubOptionIndex = 1;
+		for(var i = 0; i < classContentArray.length; i++){
+			if(classContentArray[i].divisionCode == code){
+				objSub.options[objSubOptionIndex++] = new Option(classContentArray[i].sectionName, classContentArray[i].sectionCode);
+			}
+		}
+	}
+	
+	// select 항목 초기화 함수
+	function clearOptions(objSel){
+		objSel.innerHTML = ''; 
+		objSel.options[0] = new Option("선택", "-1");
+	}
+
+</script>
+<body>
+	<div id="functionArea">
+	   <input type="button" id="add" value="추가" onClick="add()">
+	   <input type="button" id="remove" value="제거" onClick="remove()">
+	   <input type="button" id="addOption" value="분류생성" onClick="addOption()">
+	   <select id="sel_category" onChange="selectCategory(this, sel_division)">
+	   		<option value="-1">선택</option>
+	   </select>
+	   <select id="sel_division" onChange="selectDivision(this, sel_section)">
+	   		<option value="-1">선택</option>
+	   </select>
+	   <select id="sel_section">
+	   		<option value="-1">선택</option>
+	   </select>
+	</div>
+	<div id="classContentArea">
+		<!-- <p id="optionHead">option area</p> -->
+	</div>
+</body>
+</html>

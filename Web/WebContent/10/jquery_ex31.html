@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<style>
+  div { width:60px; height:60px; margin:10px; float:left;
+        border:2px solid blue; }
+  .blue { background:blue; }
+  </style>
+
+		<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+	  <input type="button" id="but" value="확인">
+	<script type="text/javascript">
+		$("#but").click(function () {
+			//alert(1);
+			//var arr = ["첫번째", "두번째", "세번째", "네번째", "다섯번째"];
+      // var arr = {
+			// 	 "one" : "1"
+			//  , "two" : "2"
+			//  , "three" : "3"
+			//  , "four" : "4"
+			//  , "five" : "5"
+			// };
+			// var arr = {
+			// 	 "1" : "one"
+			//  , "2" : "two"
+			//  , "3" : "three"
+			//  , "4" : "four"
+			//  , "5" : "five"
+			// };
+			var arr = [
+				 {"one" : "1", "xx":"xvalue"}
+			 , {"two" : "2"}
+			 , {"three" : "3"}
+			 , {"four" : "4"}
+			 , {"five" : "5"}
+		 ];
+
+
+			$.each(arr, function (key, value) {
+				if(key == "two"){
+					alert(value);
+				}
+			});
+
+			$.each(arr, function () {
+				$.each(this, function (key, value) {
+					console.log(key + " = " + value);
+				});
+
+			});
+
+		});
+	</script>
+	</body>
+</html>

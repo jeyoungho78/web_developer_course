@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc-kr">
+		<title></title>
+		<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<button>Enable</button>
+		<input id="txt" type="text" title="current" />
+		<div id="log"></div>
+	<script type="text/javascript">
+		(function () {
+			var inputTitle = $("input").attr("title");
+			$("button").click(function () {
+				$("#txt").val("txt값입력");
+			  alert($("#txt").val());
+			});
+		})();
+	</script>
+	</body>
+</html>

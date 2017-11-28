@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var newP = document.createElement("p"); //<p>
+		var newTxt = document.createTextNode("추가한 내용입니다."); // #text
+		var divObj = document.getElementById("div1");
+		
+		divObj.appendChild(newP);
+		newP.appendChild(newTxt);
+	}
+</script>
+</head>
+<body>
+	<div id="div1" class="divStyle">
+		<p>div 처음 내용.</p>
+	</div>
+	<div id="div2">
+		<input type="button" value="체크" onClick="Javascript:check()">
+	</div>
+</body>
+</html>

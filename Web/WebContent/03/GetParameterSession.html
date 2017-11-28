@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>requestGetParameter</title>
+</head>
+<body>
+	<H2>파라미터 보내기</H2>
+	<form action="/SessionAttribute" method="post">
+		텍스트: <input type="text" name="name"><br>
+		텍스트박스<textarea rows="5" cols="30" name="content"></textarea><br>
+	select : <select name="city">
+				<option value="seoul">서울</option>
+				<option value="paris">파리</option>
+				<option value="la">LA</option>
+			</select>
+	radio : <input type="radio" name="sradio" value="large">large
+	        <input type="radio" name="sradio" value="medium">medium
+	        <input type="radio" name="sradio" value="small">small
+	checkbox : 좋아하는 동물 :
+	   	    <input type="checkbox" name="pet" value="dog">강아지
+	   	    <input type="checkbox" name="pet" value="cat">고양이
+	   	    <input type="checkbox" name="pet" value="pig">돼지
+	   	    <input type="submit" value="저장">
+	   	    <a href="/01/RequestGetParameter?name=xxx&content=ffff&city=la">서버로 저장2</a>
+	</form>
+</body>
+</html>

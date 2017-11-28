@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function a1(){
+		parent.frames[1].document.up_form.text1.value="자바스크립트";		
+	}
+	
+	function a2(){
+		parent.frames[0].document.bgColor="lightblue";		
+	}
+
+</script>
+</head>
+<body>
+<h2>오른쪽 하단 프레임 문서입니다.</h2>
+<form name="down_form">
+	<input type="button" value="값 지정" onClick="a1()">
+	<input type="button" value="색 지정" onClick="a2()">
+</form>
+</body>
+</html>

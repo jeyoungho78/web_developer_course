@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		 <script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<form>
+    <input type="button" value="Input Button"/>
+    <input type="checkbox" />
+
+    <input type="file" />
+    <input type="hidden" />
+    <input type="image" />
+
+    <input type="password" />
+    <input type="radio" />
+    <input type="reset" value="ÃÊ±âÈ­"/>
+
+    <input type="submit" value="Àü¼Û"/>
+    <input type="text" />
+    <select><option>Option</option></select>
+
+    <textarea></textarea>
+    <button>Button</button>
+
+  </form>
+
+  <div id="messages0"></div>
+  <div id="messages1"></div>
+
+	<script type="text/javascript">
+		var allInputs = $(":input");
+		var formChild = $("form > * ");
+		//var inputText = $("input:text");
+		var inputText = $("input[type='text']");
+
+		//$("#messages0").text("ÃÑ" + allInputs.length + " °³ÀÇ input");
+		//$("#messages0").text("ÃÑ" + formChild.length + " °³ÀÇ input");
+		$("#messages0").text("ÃÑ" + inputText.length + " °³ÀÇ input");
+	</script>
+	</body>
+</html>

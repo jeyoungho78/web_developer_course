@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function add(){
+		var optionAttrArea = document.getElementById("optionAttrArea");
+		
+		var optionPTag = document.createElement("p");
+		optionPTag.setAttribute("id", "optionAttrGroup");
+		optionPTag.setAttribute("name", "optionAttr");
+	
+		var optionCheckbox = document.createElement("input");
+		optionCheckbox.setAttribute("type", "checkbox");
+		optionCheckbox.setAttribute("id", "optionCheckbox");
+		optionCheckbox.setAttribute("name", "optionAttr");
+		
+		var optionValueTextBox = document.createElement("input");
+		optionValueTextBox.setAttribute("type", "text");
+		optionValueTextBox.setAttribute("id", "optionValueTextBox");
+		optionValueTextBox.setAttribute("name", "optionAttr");
+		
+		var optionTextTextBox = document.createElement("input");
+		optionTextTextBox.setAttribute("type", "text");
+		optionTextTextBox.setAttribute("id", "optionTextTextBox");
+		optionTextTextBox.setAttribute("name", "optionAttr");
+
+		optionPTag.appendChild(optionCheckbox);
+		optionPTag.appendChild(optionValueTextBox);
+		optionPTag.appendChild(optionTextTextBox);
+		optionAttrArea.appendChild(optionPTag);
+	}
+	
+	function remove(){
+		var optionAttrArea = document.getElementById("optionAttrArea");
+		var len = optionAttrArea.childNodes.length;
+		var isChecked = false;
+		
+		if(len <= 3 ){
+			alert("삭제할 데이터가 없습니다.");
+			return;
+		}
+		
+		for(var i = 0; i < optionAttrArea.childNodes.length; i++){
+			var objChild = optionAttrArea.childNodes[i];
+			if(objChild.nodeName.toLowerCase() == "p"){
+				for(var j = 0; j < objChild.childNodes.length; j++) {
+					var objItem = objChild.childNodes[j];
+					if(objItem.nodeName.toLowerCase() == "input"){
+						var type = objItem.getAttribute("type");
+						if(type.toLowerCase() == "checkbox"){
+							var checked = objItem.checked;
+							if(checked){
+								isChecked = true;
+								optionAttrArea.removeChild(objChild);
+							}
+						}// if
+					}// if
+				}//for
+			}//if
+		}//for 
+		
+		if(isChecked){
+			remove();
+		} else {
+			return;
+		}
+		
+	}// remove
+	
+	function addOption(){
+		var optionAttrArea = document.getElementById("optionAttrArea");
+		var selectCategory = document.getElementById("selectCategory");
+		var isChecked = false;
+		
+		for(var i = 0; i < optionAttrArea.childNodes.length; i++){
+			isChecked = false;
+			var objChild = optionAttrArea.childNodes[i];
+			var pValue = null;
+			var pText = null;
+			if(objChild.nodeName.toLowerCase() == "p"){
+				for(var j = 0; j < objChild.childNodes.length; j++) {
+					var objItem = objChild.childNodes[j];
+					if(objItem.nodeName.toLowerCase() == "input"){
+						var type = objItem.getAttribute("type");
+						var id = objItem.id;
+						var checked = objItem.checked;
+						if(type.toLowerCase() == "checkbox" && checked){
+							isChecked = true;
+						} else if(type.toLowerCase() == "text" && id == "optionValueTextBox"){
+							pValue = objItem.value;
+						} else {
+							pText = objItem.value;
+							if(checkDuplication(pText)){
+								alert("중복된 데이터가 있습니다.");
+								return;
+							}
+						}//else
+					}// if
+				}//for
+			}//if
+			
+			if(isChecked){
+				selectCategory.options[selectCategory.options.length] 
+					= new Option(pText, pValue);
+			}
+		}//for 
+	}
+	
+	function checkDuplication(obj){
+		var len = selectCategory.options.length;
+		for(var i = 0; i < len; i++){
+			if(selectCategory.options[i].textContent == obj){
+				return true;
+			}
+		}
+		return false;
+	}
+
+</script>
+<body>
+	<div id="btnArea">
+	   <input type="button" id="add" value="추가" onClick="add()">
+	   <input type="button" id="remove" value="제거" onClick="remove()">
+	   <input type="button" id="addOption" value="대분류생성" onClick="addOption()">
+	</div>
+	<div id="selectArea">
+		<select id="selectCategory">
+		</select>
+	</div>
+	<div id="optionAttrArea">
+		<!-- <p id="optionHead">option area</p> -->
+	</div>
+</body>
+</html>

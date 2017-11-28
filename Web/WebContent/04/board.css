@@ -1,0 +1,44 @@
+@charset utf-8;
+
+* {margin:0; padding:0;}
+/*reset css*/
+html, body, table, div, p, ul, li {margin:0; padding:0; boarder:0; font-size:100%; vertical-align: baseline;}
+article,aside,canvas,details,figcaption,figure, footer,header,hgroup,menu,nav,section,summary {display:block;}
+
+caption {position:absolute; top:0; left:-999px;}
+ol li {font:9px; line-height:1.8em;}
+	
+/* ListPage */
+table {border-top:solid 2px #838383; width:100%; border-spacing:0;}
+table th {border-left:solid 1px #999; border-bottom: solid 1px #999; text-align:center; background-color:#ccc; font-weight: bold;}
+table th:last-child{border-right:solid 1px #999;}
+table td {border-left:solid 1px #999; border-bottom: solid 1px #999; text-align:center; background-color:#fff; padding:2px;}
+table td.last-child{border-right:none !important;}
+table td:last-child{border-right:solid 1px #999;}
+table td.left {text-align:left;}
+
+	
+/* 입력 페이지  */
+.wrap {overflow:hidden; margin:20px auto; width:350px;}
+h3 {margin-bottom:10px;}
+dl {overflow:hidden; border-radius:0% 8%; border:3px solid #999; padding:5%; text-align:center;}
+dl.align dt {float:left; width:70%; text-align:left;}
+dl.align dd {float:left; width:10%; text-align:left; padding-bottom:20px;}
+dl.align dd:last-child {padding-bottom:0;}
+input {width:50px;} 
+.btn {margin:15px auto; text-align:center;}
+
+/* 게시판 페이지  */
+.box {width:470px; margin:20px auto; border:5px #dfdfdf solid; padding:10px;}
+.box p {height:30px;}
+.board {width:500px; margin:0 auto; font:0.8em;}
+ul {list-style:none; border-top:3px #E54661 solid;}				
+ul li {font-size:0.8em; color:#666; border-bottom:1px #999 solid; padding:8px 0;}
+ul li:last-child {border-bottom:1px #000 solid;}
+ul li a {color:#666; text-decoration:none;}
+ul li a:hover, a:visited {color:#E54661; text-decoration:underline;}
+.paging {text-align:center; padding-top:10px;}
+.paging p{padding:8px 0 17px 0; border-bottom:2px #333 solid;}
+a {color:#666; text-decoration:none;}
+a:hover, a:visited {color:#000; text-decoration:underline;}
+a.ico {maring-top:2px; color:#666;}

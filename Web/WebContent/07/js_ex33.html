@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+	var jsonObj = {"NAME" : "이순신", "AGE" : 25, "UNIVERSITY" : "국방대학교", "MAJOR" : "전투"};
+	
+	console.log("JSON Object");
+	console.log(jsonObj["NAME"]);
+	
+	for(var objVarName in jsonObj){
+		console.log(objVarName, ":", jsonObj[objVarName]);
+	}
+	
+	console.log(jsonObj);
+	var jsonStr = JSON.stringify(jsonObj);
+	console.log(jsonStr);
+	console.log(JSON.parse(jsonStr));
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

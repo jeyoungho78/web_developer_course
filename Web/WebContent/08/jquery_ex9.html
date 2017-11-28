@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+
+  body { font-size:14px; }
+  form { border:2px green solid; padding:2px; margin:0;
+         background:#efe; }
+  div { color:red; }
+  fieldset { margin:1px; padding:3px; }
+
+</style>
+<script type="text/javascript" src="../common/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+  <p> 동일한 레벨의 이전이면 - 이후면 + </p>
+  <form class="" action="index.html" method="post">
+    <label for="">Name : </label>
+    <input  name="name">
+
+    <fieldset>
+      <label for="">Newsletter : </label>
+      <input name="newsletter">
+    </fieldset>
+   </form>
+   적용되지 않는 폼 :  <input type="text" id="none" value="">
+   <script type="text/javascript">
+     $("label + input").css("color", "blue").val("Labeled!");
+     //$("#none").val("임시값");
+     alert($("#none").val());
+   </script>
+</body>
+</html>

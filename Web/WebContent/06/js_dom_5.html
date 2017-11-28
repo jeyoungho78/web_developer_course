@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var pObj = document.getElementById("p1");
+		pObj.innerHTML = "<a href='http://www.naver.com'>naver</a>";
+		//innerHTML은 특정요수(노드)의 내용을 가져오거나 내용을 변경하는 용도로 사용
+	}
+</script>
+</head>
+<body>
+	<div id="div1" class="divStyle">
+		<p id="p1">div 처음 내용.</p>
+	</div>
+	<div id="div2">
+		<input type="button" value="체크" onClick="Javascript:check()">
+	</div>
+</body>
+</html>

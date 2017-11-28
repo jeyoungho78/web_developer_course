@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	function temp(context, delimiter, delimiterCnt){
+		var result = "";
+		var pos = 0;
+		var next = 0;
+		
+		for(var i = 0; i < delimiterCnt; i++){
+			if(i == 0){
+				pos = 0;
+			}
+			next = context.indexOf(delimiter, pos + 1);
+			result = context.substring(pos, next);
+			pos = next + 1;
+		}
+		
+		return result;
+	}	
+
+	document.write(temp("abc,def,x,y", ",", 3));
+	
+</script>
+</body>
+</html>

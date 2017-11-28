@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function reverseChkState(obj){
+		for(var i = 0; i < obj.length; i++){
+			obj[i].checked = !obj[i].checked;
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="checkbox" name="g1" value="m1">체크버튼1
+		<input type="checkbox" name="g1" value="m2">체크버튼2
+		<input type="checkbox" name="g1" value="m3">체크버튼3
+		<input type="button" value="체크역순실행" onClick="reverseChkState(this.form.g1)">
+	</form>
+</body>
+</html>

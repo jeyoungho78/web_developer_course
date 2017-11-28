@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	td41 = new Date(1970, 0, 1, 0, 0, 0);
+	td42 = new Date(1970, 0, 2, 0, 0, 0);
+	
+	gt41 = td41.getTime();
+	gt42 = td42.getTime();
+	
+	document.write(gt42 - gt41);
+	document.write("<p>");
+	document.write(((gt42 - gt41) / 24/60/60/1000) + "이 된다.");
+	document.write("<p>");
+	
+	var td11 = new Date(1970, 0, 1, 0, 0, 0);
+	
+	document.write(td11.getFullYear() + "년<br>");
+	document.write("<p>");
+	document.write(td11.getMonth() + "월<br>");
+	document.write("<p>");
+
+</script>
+</body>
+</html>

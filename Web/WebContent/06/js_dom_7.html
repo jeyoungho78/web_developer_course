@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function createEntity(){
+		var obj = document.createElement("input"); // <input></input>
+		obj.setAttribute("type", "button"); // <input type="button"></input>
+		obj.setAttribute("id", "btn1"); // <input type="button" id="btn1"></input>
+		obj.setAttribute("value", "생성된 버튼" + document.getElementsByName("btn1").length); // <input type="button" id="btn1" value="생성된 버튼"></input>
+		obj.setAttribute("name", "btn1");
+		var divObj = document.getElementById("div1"); 
+		var pObj = document.getElementById("p1");
+		
+		divObj.appendChild(obj);
+	}
+	
+	function deleteEntity(){
+		var divObj = document.getElementById("div1");
+		//var btnObj = document.getElementById("btn1");
+		//divObj.removeChild(btnObj);
+		
+		var btnObj = document.getElementsByName("btn1");
+		divObj.removeChild(btnObj[0]);
+	}
+</script>
+</head>
+<body>
+	<div id="div1" class="divStyle">
+		<p id="p1">div 처음 내용.</p>
+	</div>
+	<div id="div2">
+		<input type="button" value="생성" onClick="Javascript:createEntity()">
+	</div>
+	<div id="div3">
+		<input type="button" value="삭제" onClick="Javascript:deleteEntity()">
+	</div>
+</body>
+</html>
