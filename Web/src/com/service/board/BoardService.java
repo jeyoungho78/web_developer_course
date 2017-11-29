@@ -17,6 +17,12 @@ public class BoardService {
 	PagingData pd;
 	PagingLogic pl;
 	
+	
+	/**
+	 * Desc : 게시물 갯수 반환 함수
+	 * @Method Name : getBoardListSize
+	 * @return
+	 */
 	public int getBoardListSize() {
 		int rowCnt = 0;
 		try {
@@ -29,6 +35,12 @@ public class BoardService {
 		return rowCnt;
 	}
 	
+	/**
+	 * Desc : 게시물 목록 반환 함수 
+	 * @Method Name : getBoardList
+	 * @param map
+	 * @return
+	 */
 	public HashMap<String, Object> getBoardList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> boardListMap = null;
@@ -59,6 +71,13 @@ public class BoardService {
 		return boardListMap;
 	}
 
+	/**
+	 * Desc : 게시물 페이징을 위한 정보 반환 함수 
+	 *       (전체 페이지 수, 표시 페이지 시작 번호, 표시 페이지 끝번호, 선택페이지 번호, 이동 화살표 url주소 값)
+	 * @Method Name : getPagingInfo
+	 * @param map
+	 * @return
+	 */
 	private HashMap<String, Object> getPagingInfo(HashMap<String, Object> map) {		
 		// TODO Auto-generated method stub
 		int totalPageCount     = pl.getTotalPageCount();
@@ -77,6 +96,13 @@ public class BoardService {
 		return pagingInfoMap;
 	}
 	
+	/**
+	 * Desc : 게시물 페이징 내용 반환 함수 
+	 * 		  (표시 페이지 번호 및 url)
+	 * @Method Name : getPaging
+	 * @param map
+	 * @return
+	 */
 	private ArrayList getPaging(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		ArrayList pagingList = new ArrayList();
@@ -95,6 +121,12 @@ public class BoardService {
 		return pagingList;
 	}
 
+	/**
+	 * Desc : 게시물 내용 반환 함수
+	 * @Method Name : viewBoardContent
+	 * @param map
+	 * @return
+	 */
 	public HashMap<String, Object> viewBoardContent(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> boardViewMap = null;
@@ -111,20 +143,13 @@ public class BoardService {
 		return boardViewMap;
 	}
 
+	/**
+	 * Desc : 파일 다운로드 함수 
+	 * @Method Name : downloadFile
+	 * @param map
+	 */
 	public void downloadFile(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		/*ServletContext servletContext = (ServletContext)map.get("servletContext");
-		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		HttpServletResponse response = (HttpServletResponse)map.get("response");
-		int fileNum = Integer.valueOf(map.get("fileNum").toString());
-		
-		boardUtil.downloadFile(servletContext, request, response, filename);*/
 		try {
-			//boardDao bd = new boardDao();
-			//HashMap<String, String> fileMap = bd.getdownloadFileInfo(map);
-			//map.put("fileMap", fileMap);
-			
-			//downloadFile(map);
 			ServletContext servletContext = (ServletContext)map.get("servletContext");
 			HttpServletRequest request = (HttpServletRequest)map.get("request");
 			HttpServletResponse response = (HttpServletResponse)map.get("response");
@@ -138,6 +163,11 @@ public class BoardService {
 		}
 	}
 	
+	/**
+	 * Desc : 게시물 내용 쓰기 함수 
+	 * @Method Name : writeBoardContent
+	 * @param map
+	 */
 	public void writeBoardContent(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		try {
@@ -149,6 +179,11 @@ public class BoardService {
 		}
 	}
 	
+	/**
+	 * Desc : 파일 업로드 함수
+	 * @Method Name : uploadFiles
+	 * @param map
+	 */
 	public void uploadFiles(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		try {
@@ -162,6 +197,12 @@ public class BoardService {
 		}
 	}
 	
+	/**
+	 * Desc : 파일 업로드시 고유 이름 부여 함수
+	 * @Method Name : renameUploadFile
+	 * @param map
+	 * @return
+	 */
 	public ArrayList renameUploadFile(HashMap<String, Object> map) {
 		MultipartRequest multi = (MultipartRequest)map.get("multi");
 		String uploadPath = (String)map.get("uploadPath");
@@ -187,13 +228,17 @@ public class BoardService {
 			HashMap<String, String> fileMap = new HashMap<String, String>();
 			fileMap.put("filename", renamefilename); // 변경된 파일 이름으로 세팅
 			fileMap.put("origfilename", origfilename);
-			//fileMap.put("renamefilename", renamefilename);
 			fileList.add(fileMap);
 		}
 		
 		return fileList;
 	}
 
+	/**
+	 * Desc : 게시물 내용 수정 함수 
+	 * @Method Name : updateBoardContent
+	 * @param map
+	 */
 	public void updateBoardContent(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		try {
@@ -205,6 +250,11 @@ public class BoardService {
 		}
 	}
 
+	/**
+	 * Desc : 게시물 삭제 함수
+	 * @Method Name : deleteBoardContent
+	 * @param map
+	 */
 	public void deleteBoardContent(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		try {

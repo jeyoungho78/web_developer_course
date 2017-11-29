@@ -29,13 +29,14 @@ public class BoardDao {
 		try {
 			pl = (PagingLogic)map.get("PagingLogic");
 			
+			// 게시물 목록에서 보여질 게시물 시작번호와 끝번호를 
 			int selectedPage    = Integer.valueOf(map.get("selectedPage").toString());
 			map.put("contentStart", pl.getContentStart());
 			map.put("contentEnd", pl.getContentEnd());
 			
     		list = (ArrayList)(IBatisDBConnector.getSqlMapInstance()).queryForList("getBoardList", map);
 			
-    		// URL을 셋팅해주는 부분 
+    		// 게시물 목록에서 URL을 셋팅해주는 부분 
     		for(int i = 0; i < list.size(); i++) {
     			HashMap<String, Object> data = (HashMap<String, Object>)list.get(i);
     			data.put("BOARD_CONTENT_URL", pl.makeContentURL(Integer.valueOf(data.get("BOARD_NUM").toString()), selectedPage));
@@ -74,6 +75,7 @@ public class BoardDao {
 	public void writeBoardContent(HashMap<String, Object> map) throws Exception{
 		// TODO Auto-generated method stub
 		try {
+			// 게시물 신규 번호 생성
 			int newBoardNum = getNewBoardNum();
 			map.put("newBoardNum", newBoardNum);
 			
@@ -120,17 +122,19 @@ public class BoardDao {
 			
 			ArrayList fileList 	= (ArrayList)map.get("fileList");
 			
+			// 게시물 신규 내용 입력시 생성된 게시물 번호 값을 얻어옴
 			int maxBoardNum = getMaxBoardNum();
 			int newFileNum = 0;
 			for(int i = 0; i < fileList.size(); i++) {
 				
+				// 신규 파일 번호를 생성
 				newFileNum = getNewFileNum();
 				
 				HashMap<String, Object> fileMap = (HashMap<String, Object>)fileList.get(i);
 				fileMap.put("newFileNum", newFileNum);
 				fileMap.put("maxBoardNum", maxBoardNum);
 				
-			    (IBatisDBConnector.getSqlMapInstance()).update("uploadFiles", fileMap);
+			    (IBatisDBConnector.getSqlMapInstance()).insert("uploadFiles", fileMap);
 			}
 			
 		} catch (Exception e) {

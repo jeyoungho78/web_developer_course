@@ -44,8 +44,7 @@
 		  				AND RNUM <![CDATA[>=]]> #contentStart# AND RNUM <![CDATA[<=]]> #contentEnd#	
 		  			</isNotEmpty>
 		  		</isNotEmpty>
-		  	</dynamic> 
-		    
+		  	</dynamic> 		    
 	</select>
 	
 	<select id="viewBoardContent" parameterClass="hashmap" resultClass="hashmap">
