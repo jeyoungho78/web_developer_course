@@ -2,8 +2,9 @@
     pageEncoding="EUC-KR"%>
 <%
 	System.out.println("aJax jsp log");
-	System.out.println("num:" + request.getParameter("num"));
-	System.out.println("name:" + request.getParameter("name"));
+	System.out.println("첫번째값:" + request.getParameterValues("sendData[]")[0]);
+	System.out.println("두번째값:" + request.getParameterValues("sendData[]")[1]);
+	System.out.println("세번째값:" + request.getParameterValues("sendData[]")[2]);
 
 %>
-{"name":"홍길동"}
+{"name":"<%=request.getParameterValues("sendData[]")[0]%>"}
