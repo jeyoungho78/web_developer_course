@@ -4,18 +4,22 @@
 		<meta charset="euc-kr">
 		<title></title>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> 
 		<script type="text/javascript">
-				function loadAjax() {
-					var arrayData = ["first", "second", "third"];
-					jQuery.ajax({
+				function loadAjax() {	
+					console.log("before start!");
+					
+					$("#frm").ajaxForm({
+						async:true,
+						//cache:false,
 						type:"POST",
-						url:"./ajax_ex_3.jsp",
-						data:{"sendData" : arrayData},
-						dataType:"json",
+						url:"./ajax_ex_7.jsp",
+						beforeSend:function(){
+							//alert(1);
+							console.log("beforeSend");
+						},
 						success:function (data) {
-							console.log("성공");
-							//var retVal = JSON.parse(data);
-							$("#disp").html("서버에서 받은 값 : <B>" + data.name + "</B>");
+							console.log(data);
 						},
 						error:function (xhr, status, error) {
 							console.log("에러발생");
@@ -35,20 +39,25 @@
 							//3: 데이터를 일부 받았음
 							//4: 데이터 전체 수신
 						}
-					});
-
+					}).submit();
+					
+					console.log("end line!");
 				}
 		</script>
 	</head>
 	<body>
-		<form>
-			num : <input type="text" name="num" value="">
+		<h1>Ajax 예제(xml데이타)</h1>
+		<div id="report">
+		
+		</div>
+		<p>
+		<input type="button" value="ajax확인" onclick="loadAjax()">
+		
+		<form id="frm">
 			<p>
-			name : <input type="text" name="name" value="">
-			<input type="button" name="button" value="ajax실행" onclick="javascript:loadAjax()">
+				num : <input type="text" name="num" value="">
 			<p>
-			<div id="disp"></div>
-
+				name : <input type="text" name="name" value="">
 		</form>
 	</body>
 </html>

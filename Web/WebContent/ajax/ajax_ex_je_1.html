@@ -6,11 +6,33 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
 				function loadAjax() {
-					var arrayData = ["first", "second", "third"];
+					var params = [{
+				        "age": 44,
+				        "name": "James Martin",
+				        "daughters": [{
+				            "age": 24,
+				            "name": "Michelle",
+				            "husband": {
+				                "age": 30,
+				                "name": "Matthew"
+				            }
+				        }, {
+				            "age": 30,
+				            "name": "Angela",
+				            "husband": {
+				                "age": 23,
+				                "name": "William"
+				            }
+				        }]
+					}]
+					
+					//console.log("params Data : ", JSON.stringify(params));
+					//return;
+					
 					jQuery.ajax({
 						type:"POST",
-						url:"./ajax_ex_3.jsp",
-						data:{"sendData" : arrayData},
+						url:"./ajax_ex_je_1.jsp",
+						data:{"key":params},
 						dataType:"json",
 						success:function (data) {
 							console.log("¼º°ø");

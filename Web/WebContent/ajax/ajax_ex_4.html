@@ -6,11 +6,14 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
 				function loadAjax() {
-					var arrayData = ["first", "second", "third"];
+					var jsonData = {};
+					jsonData.name = $("input[name='name']").val();
+					jsonData.num = $("input[name='num']").val();
+					
 					jQuery.ajax({
 						type:"POST",
-						url:"./ajax_ex_3.jsp",
-						data:{"sendData" : arrayData},
+						url:"./ajax.jsp",
+						data:jsonData,
 						dataType:"json",
 						success:function (data) {
 							console.log("¼º°ø");
