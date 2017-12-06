@@ -28,23 +28,23 @@ function chkSearchForm(){
  */
 var org_nm_num = 0;
 function addFileInp() {
-	var fileArea = document.getElementById("file_area");
+    var fileArea = $("#file_area");
 
-	var fileInput = document.createElement("div");
-	fileInput.setAttribute("class", "file_wrap");
-	fileInput.setAttribute("name", "fileInput");
-	fileArea.appendChild(fileInput);
+	var fileInput = $("<div></div>");
+	fileInput.attr("class", "file_wrap");
+	fileInput.attr("name", "fileInput");
+	fileArea.append(fileInput);
 
-	var fileInputCheckBox = document.createElement("input");
-	fileInputCheckBox.setAttribute("type", "checkbox");
-	fileInputCheckBox.setAttribute("name", "chkbox");
-	fileInput.appendChild(fileInputCheckBox);
+	var fileInputCheckBox = $("<input></input>");
+	fileInputCheckBox.attr("type", "checkbox");
+	fileInputCheckBox.attr("name", "chkbox");
+	fileInput.append(fileInputCheckBox);
 
-	var fileInputBox = document.createElement("input");
-	fileInputBox.setAttribute("type", "file");
-	org_nm_num += 1; 
-	fileInputBox.setAttribute("name", "org_nm" + org_nm_num);
-	fileInput.appendChild(fileInputBox);
+	var fileInputBox = $("<input></input>");
+	fileInputBox.attr("type", "file");
+	org_nm_num += 1;
+	fileInputBox.attr("name", "org_nm" + org_nm_num);
+	fileInput.append(fileInputBox);
 }
 
 /**
@@ -52,16 +52,14 @@ function addFileInp() {
  * : boardWrite에서 파일업로드 입력창 삭제
  */
 function deleteInp() {
-	var fileArea = document.getElementById("file_area");
-	var fileInput = document.getElementsByName("fileInput");
-	var fileInputCheckBox = document.getElementsByName("chkbox");
+	var fileArea = $("#file_area");
+	var fileInput = $("[name='fileInput']");
+	var fileInputCheckBox = $("[name='chkbox']");
 
 	var chkCnt = 0;
 	for (var i = 0; i < fileInputCheckBox.length; i++) {
 		if (fileInputCheckBox[i].checked) {
-			fileArea.removeChild(fileInput[i]);
-			i--;
-
+			fileInput.eq(i).remove();
 			chkCnt++;
 		}
 	}

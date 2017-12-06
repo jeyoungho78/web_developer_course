@@ -4,11 +4,17 @@
 <%@ page import="com.google.gson.internal.LinkedTreeMap"%>
 <%@ page import="java.util.*"%>
 <%
-	Enumeration em = request.getParameterNames();
+    Object key = request.getParameter("key");
+	System.out.println(key);
+	
+	//ArrayList list = new Gson().fromJson(key, ArrayList.class);
+	//System.out.println("map : " + list);
+	
+	/* Enumeration em = request.getParameterNames();
     while(em.hasMoreElements()){
     	String parameterName = (String)em.nextElement();
     	System.out.println(parameterName);
-    }
+    } */
 
     //String key = request.getParameter("key");
 

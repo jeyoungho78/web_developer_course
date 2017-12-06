@@ -32,7 +32,7 @@
 					jQuery.ajax({
 						type:"POST",
 						url:"./ajax_ex_je_1.jsp",
-						data:{"key":params},
+						data:{"key":JSON.stringify(params)},
 						dataType:"json",
 						success:function (data) {
 							console.log("¼º°ø");

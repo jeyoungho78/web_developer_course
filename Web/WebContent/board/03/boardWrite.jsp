@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <%@ include file="./include/headInfo.html" %>
 <title>Insert title here</title>
-<script type="text/javascript" src="/board/02/js/board.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/board/03/js/board.js"></script>
 </head>
 <body>
  <div class="wrap">
@@ -51,55 +52,4 @@
     </form>
   </div>
 </body>
-<!-- <script type="text/javascript">
-	/**
-	 * addFileInp
-	 * : boardWrite에서 파일업로드 입력창 생성
-	 */
-	var org_nm_num = 0;
-	function addFileInp() {
-		var fileArea = document.getElementById("file_area");
-	
-		var fileInput = document.createElement("div");
-		fileInput.setAttribute("class", "file_wrap");
-		fileInput.setAttribute("name", "fileInput");
-		fileArea.appendChild(fileInput);
-	
-		var fileInputCheckBox = document.createElement("input");
-		fileInputCheckBox.setAttribute("type", "checkbox");
-		fileInputCheckBox.setAttribute("name", "chkbox");
-		fileInput.appendChild(fileInputCheckBox);
-	
-		var fileInputBox = document.createElement("input");
-		fileInputBox.setAttribute("type", "file");
-		org_nm_num += 1; 
-		fileInputBox.setAttribute("name", "org_nm" + org_nm_num);
-		fileInput.appendChild(fileInputBox);
-	}
-	
-	/**
-	 * deleteInp
-	 * : boardWrite에서 파일업로드 입력창 삭제
-	 */
-	function deleteInp() {
-		var fileArea = document.getElementById("file_area");
-		var fileInput = document.getElementsByName("fileInput");
-		var fileInputCheckBox = document.getElementsByName("chkbox");
-	
-		var chkCnt = 0;
-		for (var i = 0; i < fileInputCheckBox.length; i++) {
-			if (fileInputCheckBox[i].checked) {
-				fileArea.removeChild(fileInput[i]);
-				i--;
-	
-				chkCnt++;
-			}
-		}
-	
-		if (chkCnt == 0) {
-			alert("삭제할 데이터가 없습니다.");
-		}
-	}
-
-</script> -->
 </html>

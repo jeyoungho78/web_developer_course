@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function loadAjax(){
+		$.ajax({
+			type : "POST",
+			url : "./departmentList.jsp",
+			dataType : "json",
+			success : function (data){
+				console.log("성공");
+				$("table tbody:last > tr").remove();
+			    $(data.list).each(function(index, element){
+			    	str = "<tr><td>" + element.DEPT_CODE  + "</td>" + 
+			    	          "<td>" + element.DEPT_NAME  + "</td>" + 
+			    	          "<td>" + element.DEPT_ENAME  + "</td>" + 
+			    	          "<td>" + element.CREATE_DATE  + "</td>" + 
+			    	      "</tr>";
+			    	$("table tbody:last").append(str);
+			    });
+			},
+			error : function (xhr, status, error){
+				console.log("에러발생 ");
+				console.log("xhr : " + JSON.stringify(xhr));
+				console.log("status : " + status);
+				console.log("error : " + error);
+			},
+			complete : function (event, request, settings){
+				console.log("완료");
+				console.log("event : " + JSON.stringify(event));
+				console.log("request : " + request);
+				console.log("settings : " + settings);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+<form action="">
+	<input type="button" name="btnAjax" value="ajax실행" onclick="loadAjax()">
+	
+</form>
+<table>
+	<tr>
+		<td>학과번호</td>
+		<td>학과명</td>
+		<td>학과영문이름</td>
+		<td>학과생성날짜</td>
+	<tr>
+	<tbody>
+	</tbody>
+</table>
+</body>
+</html>

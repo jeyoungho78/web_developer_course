@@ -9,7 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <%@ include file="./include/headInfo.html" %>
 <title>Insert title here</title>
-<script type="text/javascript" src="/board/02/js/board.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/board/03/js/board.js"></script>
 </head>
 <body>
 <c:set var="selectedPage" value="${param.selectedPage}"></c:set>
@@ -31,6 +32,7 @@
     <form action="/BoardAction" method="GET">
       <input type="hidden" id="selectedPage" name="selectedPage" value="${selectedPage}">
       <input type="hidden" id="boardNum" name="boardNum" value="${boardNum}">
+      <input type="hidden" id="delFileNum" name="delFileNum">
       <input type="hidden" id="cmd" name="cmd" value="update">
       <div class="input_wrapper">
         <div class="title_wrap">
@@ -64,16 +66,19 @@
 	    </div>
 	  </div>
 	  <div id="file_area">
-	  	<%-- <c:forEach var="map" items="${boardContentView}" varStatus="status">
+	  	<c:forEach var="map" items="${boardContentView}" varStatus="status">
             <c:set var="fileNum" value="${map.FILE_NUM}"></c:set>
             <c:set var="filename" value="${map.SYS_NM}"></c:set>
             <c:set var="origfilename" value="${map.ORG_NM}"></c:set>
-            <div class="file_wrap" name="fileInput">
-            	<input type="checkbox" name="chkbox">
+            <div class="file_wrap" name="fileInput" value="${fileNum}">
             	${origfilename}
-            	<input type="button" value="삭제" onClick="">
+            	<a href="#" name="delFile">
+            		<span style="background-color:#666; color:#fff;padding:2px 4px; font-size:9px; border-radius: 2px; font-weight:bold;">
+            		 X
+            		</span>
+            	</a>
            </div>
-       	</c:forEach> --%>
+       	</c:forEach>
 	  </div>  
       <div class="submit_wrapper">
         <input type="submit" value="확인" class="unrole_btn">
@@ -81,4 +86,15 @@
     </form>
   </div>
 </body>
+<script type="text/javascript">
+	var delFile = $("[name='delFile']");
+	delFile.click(function(){
+	    var parent = $(this).parent();
+	    var fileNum = parent.attr('value');
+	    //$("#delFileNum").val(fileNum);
+	    parent.remove();
+		//alert("1");
+	});
+	
+</script>
 </html>
