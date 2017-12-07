@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="department">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="hashmap" type="java.util.HashMap" />
+
+	<select id="getBoardListSize" parameterClass="hashmap" resultClass="int">
+		SELECT COUNT(*) AS ROWCNT 
+		  FROM BOARD 
+		 WHERE DEL_YN = 'N'
+	</select>
+	
+	<select id="getBoardList" parameterClass="hashmap" resultClass="hashmap">
+		SELECT X.*                             
+		  FROM(SELECT ROWNUM AS RNUM           
+		            , BOARD_NUM                
+		            , BOARD_TITLE             
+		            , BOARD_CONTENT           
+		            , BOARD_WRITER            
+		            , BOARD_CLICK_CNT         
+		            , CREATE_DATE             
+		            , DEL_YN           		  
+		        FROM (SELECT * 
+		                FROM BOARD     
+		 			   WHERE 1=1       
+		                 AND DEL_YN = 'N'
+		                 <dynamic>
+		                 	<isNotEmpty property="field">
+		                 	  <isNotEmpty property="searchWord">
+		                 	  	 AND #field# LIKE '%' || #searchWord# || '%'
+		                 	  </isNotEmpty>
+		                 	</isNotEmpty> 
+		                 </dynamic>
+		 			ORDER BY BOARD_NUM DESC)  
+		        WHERE 1=1) X 
+		  WHERE 1=1
+		  	<dynamic>
+		  		<isNotEmpty property="contentStart">
+		  			<isNotEmpty property="contentEnd">
+		  				AND RNUM <![CDATA[>=]]> #contentStart# AND RNUM <![CDATA[<=]]> #contentEnd#	
+		  			</isNotEmpty>
+		  		</isNotEmpty>
+		  	</dynamic> 		    
+	</select>
+	
+	<select id="viewBoardContent" parameterClass="hashmap" resultClass="hashmap">
+		SELECT B.BOARD_NUM AS BOARD_NUM         	  
+		     , B.BOARD_TITLE AS BOARD_TITLE      	
+		     , B.BOARD_CONTENT AS BOARD_CONTENT     
+		     , B.BOARD_WRITER AS BOARD_WRITER     	
+		     , B.BOARD_CLICK_CNT AS BOARD_CLICK_CNT  
+		     , B.CREATE_DATE AS CREATE_DATE      	
+		     , B.DEL_YN AS DEL_YN          			
+		     , F.FILE_NUM AS FILE_NUM         		
+		     , F.SYS_NM AS SYS_NM         			   
+		     , F.ORG_NM AS ORG_NM           		
+		  FROM BOARD B           					
+		     , BOARD_FILE F
+		 WHERE 1=1
+		  AND B.BOARD_NUM = F.BOARD_NUM(+) 
+  		  AND B.BOARD_NUM = #boardNum# 	
+	</select>
+	
+	<update id="updateBoardClickCount" parameterClass="hashmap">
+		UPDATE BOARD             						   
+		   SET BOARD_CLICK_CNT = BOARD_CLICK_CNT + 1    
+		 WHERE 1=1               
+		   AND BOARD_NUM = #boardNum#
+	</update>
+	
+	<insert id="writeBoardContent" parameterClass="hashmap">
+		INSERT INTO BOARD VALUES(#newBoardNum#, #boardTitle#, #boardContent#, #boardWriter#, 0, TO_CHAR(SYSDATE, 'YYYYMMDDHHMISS'), 'N')
+	</insert>
+	
+	<select id="getNewBoardNum" parameterClass="hashmap" resultClass="int">
+		SELECT NVL(MAX(BOARD_NUM), 1) + 1 AS NEW_BOARD_NUM FROM BOARD 	
+	</select>
+	
+	<select id="getMaxBoardNum" parameterClass="hashmap" resultClass="int">
+		SELECT NVL(MAX(BOARD_NUM), 1) AS MAX_BOARD_NUM FROM BOARD 	
+	</select>
+	
+	<select id="getNewFileNum" parameterClass="hashmap" resultClass="int">
+		SELECT NVL(MAX(FILE_NUM), 1) + 1 AS NEW_FILE_NUM FROM BOARD_FILE 	
+	</select>
+	
+	<update id="updateBoardContent" parameterClass="hashmap">
+		UPDATE BOARD
+		   SET BOARD_TITLE = #boardTitle#
+		     , BOARD_WRITER = #boardWriter#   
+		     , BOARD_CONTENT = #boardContent# 
+		 WHERE 1=1
+		   AND BOARD_NUM = #boardNum#
+	</update>
+	
+	<insert id="uploadFiles" parameterClass="hashmap">
+		INSERT INTO BOARD_FILE
+		VALUES(#newFileNum#, #maxBoardNum#, #filename#, #origfilename#, TO_CHAR(SYSDATE, 'YYYYMMDDHHMISS'), 'N')
+	</insert>
+	
+	<select id="getdownloadFileInfo" parameterClass="hashmap" resultClass="hashmap">
+		SELECT SYS_NM
+		     , ORG_NM
+		  FROM BOARD_FILE
+		 WHERE 1=1
+		   AND FILE_NUM = #fileNum#
+	</select>
+	
+	<update id="deleteBoardContent">
+		UPDATE BOARD
+		   SET DEL_YN = 'Y'
+		 WHERE 1=1
+		   AND BOARD_NUM = #boardNum#
+	</update>
+	
+</sqlMap>

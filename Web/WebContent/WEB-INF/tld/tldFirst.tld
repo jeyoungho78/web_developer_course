@@ -8,4 +8,16 @@
 		<name>firstTag</name>
 		<tag-class>com.tag.FirstTag</tag-class>
 	</tag>
+	<tag>
+		<name>secondTag</name>
+		<tag-class>com.tag.SecondTag</tag-class>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+	<tag>
+		<name>thirdTag</name>
+		<tag-class>com.tag.ThirdTag</tag-class>
+	</tag>
 </taglib>
