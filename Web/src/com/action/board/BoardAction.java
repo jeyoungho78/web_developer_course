@@ -37,7 +37,7 @@ public class BoardAction extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		
 		// 중요 : 이걸로 경로 설정 변경됨
-		String rootURL = "/board/03/";
+		String rootURL = "/board/04/";
 		
 		String cmd = request.getParameter("cmd");
 		
@@ -99,6 +99,43 @@ public class BoardAction extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 			rd.forward(request, response);
 		
+		} else if (cmd.equals("listAjax")) {
+			// #1 : request 파라미터 
+			int totalContentCount 		= Integer.valueOf(request.getParameter("totalContentCount") == null? "0" : request.getParameter("totalContentCount"));    // 전체 컨텐츠 개수
+			int perPageContentCount 	= Integer.valueOf(request.getParameter("perPageContentCount") == null? "0" : request.getParameter("perPageContentCount"));  // 페이지당 컨텐츠 개수
+			int perPageViewPageCount 	= Integer.valueOf(request.getParameter("perPageViewPageCount") == null? "0" : request.getParameter("perPageViewPageCount")); // 페이지당 보여질 페이지 개수
+			int selectedPage            = Integer.valueOf(request.getParameter("selectedPage") == null? "0" : request.getParameter("selectedPage"));
+			String field 			    = request.getParameter("field") == null? "" : request.getParameter("field");
+			String searchWord 	     	= request.getParameter("searchWord") == null? "" : request.getParameter("searchWord");
+				
+			// 테스트 설정값
+			totalContentCount = 100;
+			perPageContentCount = 5;
+			perPageViewPageCount = 2;
+			if (selectedPage == 0) {
+			   selectedPage = 1;
+			}
+			
+			// #2 : service 넘길 인자값
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("totalContentCount", 	totalContentCount);
+			map.put("perPageContentCount", 	perPageContentCount);
+			map.put("perPageViewPageCount", perPageViewPageCount);
+			map.put("selectedPage", 		selectedPage);
+			map.put("field", 				field);
+			map.put("searchWord", 			searchWord);
+			
+			// #3 : service 실행 
+			BoardService bs = new BoardService();
+			HashMap<String, Object> boardListMap = bs.getBoardList(map);
+			
+			// #4 : service 리턴값 
+			request.setAttribute("boardListMap", boardListMap);
+			
+			// #5 : 페이지 이동
+			String url = rootURL + "boardListJson.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+			rd.forward(request, response);
 		} else if (cmd.equals("view")) {
 			int selectedPage    = Integer.valueOf(request.getParameter("selectedPage") == null? "0" : request.getParameter("selectedPage"));
 			int boardNum        = Integer.valueOf(request.getParameter("boardNum") == null? "0" : request.getParameter("boardNum"));
