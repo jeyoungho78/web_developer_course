@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<insert id="memberInsert" parameterType="HashMap">
+		INSERT INTO MEMBER
+		           (NAME        	/*회원이름*/
+				  , EMAIL 			/*회원이메일*/
+				  , HOBBY			/*회원취미*/
+				  , ANIMAL			/*회원애완동물*/
+				  , GENDER)		    /*회원성별*/
+		     VALUES(#{name}  		/*회원이름*/
+		          , #{email}        /*회원이메일*/
+				  , #{hobby}        /*회원취미*/
+				  , #{animal}       /*회원애완동물*/
+				  , #{gender})      /*회원성별*/
+	</insert>
+	<select id="memberView" parameterType="HashMap" resultType="MemberEntity">
+		  SELECT ID AS id            /*회원아이디*/
+		       , NAME AS name        /*회원이름*/
+			   , EMAIL AS email      /*회원이메일*/
+			   , HOBBY AS hobby      /*회원취미*/
+			   , ANIMAL AS animal    /*회원애완동물*/
+			   , GENDER AS gender    /*회원성별*/
+		    FROM MEMBER
+		   WHERE 1=1
+		     AND ID = (SELECT MAX(ID) AS id FROM MEMBER)
+	</select>
+
+</mapper>

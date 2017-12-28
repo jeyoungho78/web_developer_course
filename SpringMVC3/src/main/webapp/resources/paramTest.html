@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/requestParam7.do">
+		<p>id : <input type="text" name="id">
+		<p>name : <input type="text" name="name">
+		<p>email : <input type="text" name="email">
+		<p>hobby : <input type="checkbox" name="hobby" value="baseball"> 야구,
+				   <input type="checkbox" name="hobby" value="reading"> 독서,
+				   <input type="checkbox" name="hobby" value="fishing"> 낚시
+		<p>성별 : <input type="radio" name="gender" value="male"> 남자,
+				<input type="radio" name="gender" value="female"> 여자
+		<p>동물 : 
+			<select name="selAnimal">
+				<option value="dog">강아지</option>
+				<option value="cow">소</option>
+				<option value="cat">고양이</option>
+			</select>
+		<p><input type="submit" value="서버보내기">
+	</form>
+</body>
+</html>

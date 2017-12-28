@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<typeAliases>
+		<typeAlias alias="String" type="java.lang.String" />
+		<typeAlias alias="Integer" type="java.lang.Integer" />
+		<typeAlias alias="HashMap" type="java.util.HashMap"/>		
+		<typeAlias alias="List" type="java.util.List"/>		
+		<typeAlias alias="MemberEntity" type="com.example.spring.member.entity.MemberEntity"/>		
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.example.spring.common.MybatisLogInterceptor"></plugin>
+	</plugins>
+
+	
+	<mappers>
+		<mapper resource="com/example/spring/department/departmentMapper.xml"/>
+		<mapper resource="com/example/spring/member/memberMapper.xml"/>
+	</mappers>
+	
+		
+</configuration>

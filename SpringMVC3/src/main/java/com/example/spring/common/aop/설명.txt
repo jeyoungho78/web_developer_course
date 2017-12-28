@@ -1,0 +1,16 @@
+
+AOP : 비즈니스로직(core logic)과 부가적(공통적)[cross-cutting logic]기능을 분리하는 프로그래밍
+
+용어
+code : 비즈니스로직[core logic]
+advice : 부가적, 공통로직[cross-cutting logic]
+jointpoint : core+advice 연결정보
+point-cut : 실제적으로 advice 적용된 joinpoint
+weaving : code, advice, point-cut 조합으로 프로그램 만드는 것
+
+
+실행종류
+around : 비즈니스 로직 전 후, Exception (에러)발생시에도  실행
+before : 비즈니스 로직 시작전
+after-returning : 비즈니스 로직 정상적 종료 후
+after : 비즈니스 로직 종료 후, Exception (에러)발생시에도  실행

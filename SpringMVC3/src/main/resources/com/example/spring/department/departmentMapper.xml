@@ -1,0 +1,44 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- department.departmentList -->
+<mapper namespace="department">
+	<select id="departmentList" parameterType="HashMap" resultType="HashMap">
+		/* /department/departmentMapper.xml - departmentList (학과조회 ) */
+		SELECT DEPT_CODE AS deptCode  /*학과코드*/
+		     , DEPT_NAME AS deptName  /*학과명*/
+		  FROM DEPARTMENT
+		 WHERE 1=1
+		<if test="deptCode !=null and deptCode !=''">  
+		   AND DEPT_CODE = #{deptCode}
+		</if>
+		<if test="deptName !=null and deptName !=''">
+		   AND DEPT_NAME = #{deptName}
+		</if>
+	</select>
+	
+	<insert id="departmentInsert">
+		/* /department/departmentMapper.xml - departmentInsert (학과등록 ) */
+		INSERT INTO DEPARTMENT
+			       (DEPT_CODE  			/*학과코드*/
+			      , DEPT_NAME			/*학과명*/
+			      , DEPT_ENAME			/*학과영문명*/
+			      , CREATE_DATE)        /*학과생성일자*/
+		     VALUES(#{deptCode}         /*학과코드*/ 
+			      , #{deptName}         /*학과명*/  
+			      , #{deptEname}        /*학과영문명*/
+			      , now())              /*학과생성일자*/  
+	</insert>
+	
+	<update id="departmentUpdate">
+		/* /department/departmentMapper.xml - departmentUpdate (학과수정 ) */
+			UPDATE DEPARTMENT
+			   SET DEPT_NAME  = #{deptName}			/*학과명*/
+			     , DEPT_ENAME = #{deptEname}		/*학과영문명*/
+		     WHERE 1=1
+		    <if test="deptCode !=null and deptCode !=''">  
+			   AND DEPT_CODE = #{deptCode}
+			</if>
+	</update>
+	
+</mapper>

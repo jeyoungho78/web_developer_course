@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="/resources/common/js/paging.js"></script>
+<script type="text/javascript">
+	function ajaxFormSubmit(url, formId){
+		paging.ajaxFormSubmit(url, formId, function(rslt){
+			console.log("결과데이타" + JSON.stringify(rslt));
+			
+			if(rslt.success == "true"){
+				console.log("취미를 야구로 선택하셨습니다.");
+			} else {
+				console.log("취미를 야구로 선택하지 않으셨습니다.");
+			}
+			
+		});
+	}
+	
+	function fileUpload(){
+	      frm.action="/fileUpload.do"
+	      frm.submit();
+	}
+	
+	errorMessage
+	 
+
+</script>
+</head>
+<body>
+	<form id="frm" name="frm" enctype="multipart/form-data" method="post">
+		<p>id : <input type="text" name="id">
+		<p>name : <input type="text" name="name">
+		<p>email : <input type="text" name="email">
+		<p>hobby : <input type="checkbox" name="hobby" value="baseball"> 야구,
+				   <input type="checkbox" name="hobby" value="reading"> 독서,
+				   <input type="checkbox" name="hobby" value="fishing"> 낚시
+		<p>성별 : <input type="radio" name="gender" value="male"> 남자,
+				<input type="radio" name="gender" value="female"> 여자
+		<p>동물 : 
+			<select name="selAnimal">
+				<option value="dog">강아지</option>
+				<option value="cow">소</option>
+				<option value="cat">고양이</option>
+			</select>
+		<p>파일 : 
+			 <p><input type="file" name="file1">
+        	 <p><input type="file" name="file1">
+             <p><input type="file" name="file1">
+		<p><input type="submit" value="ajax처리_첫번째" onclick="fileUpload()">
+	</form>
+</body>
+</html>

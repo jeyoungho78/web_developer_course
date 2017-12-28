@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
+	<view-controller path="/main" view-name="main"/>
+	<view-controller path="/paramExam" view-name="exam/paramExam"/>
+<!-- 	<view-controller path="/login" view-name="content/login"/> -->
+	<view-controller path="/memberEdit" view-name="member/memberEdit"/>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.example.spring" />
+	
+	<!-- <beans:bean id="smsSender" class="com.example.spring.beantest.SmsSender">
+		<beans:property name="value" value="false"></beans:property>
+		<beans:constructor-arg value="false"></beans:constructor-arg>
+	</beans:bean> -->
+	
+	<!-- <beans:bean id="homeController" class="com.example.spring.HomeController">
+		<beans:property name="smsSender" ref="smsSender"></beans:property>
+	</beans:bean> -->
+	
+	<beans:bean id="helloController" class="com.example.spring.HelloController">
+		<beans:property name="me" value="helloController"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name="mappings">
+			<beans:props>
+				<beans:prop key="/login.do">helloController</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
+	<!-- <beans:bean id="commonInterceptor" class="com.example.spring.common.CommonInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/exclude/**"/>
+			<exclude-mapping path="/requestParam7.do"/>
+			<exclude-mapping path="/add/**"/>
+			<beans:ref bean="commonInterceptor"></beans:ref>
+			<beans:bean class="com.example.spring.common.commonInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors> -->
+	
+	<!-- <interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:bean class="com.example.spring.common.ContentInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors> -->
+	
+	<!-- 
+		1M = 1024kb
+		1M = 1024 * 1024b
+		10m = 1024 * 1024 * 10
+	 -->
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="20971520"></beans:property>
+		<beans:property name="maxInMemorySize" value="10485670"></beans:property>
+	</beans:bean>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<beans:bean id="adviceLog" class="com.example.spring.common.aop.AdviceLog"/>
+	
+</beans:beans>
